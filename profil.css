@@ -1,0 +1,439 @@
+#wrapper_content {
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin: auto;
+}
+
+#board {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+    #profil_picture {
+        display: flex;
+        margin-right: 100px;
+    }
+        #circle_frame_my_profile {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            border: 2px solid #DBDBDB;
+            box-shadow: 0 0 0.1px 0.1px #DBDBDB;
+            border-radius: 100px;
+            margin: -6.4px 0 0 -6.4px;
+        }
+        #circle_frame_other_profile {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            border: 2px solid #DBDBDB;
+            box-shadow: 0 0 0.1px 0.1px #DBDBDB;
+            border-radius: 100px;
+            margin: -7px 0 0 -7px;
+        }
+        #text_picture {
+            position: absolute;
+            font-family: "IBM Plex Sans Condensed";
+            font-weight: 300;
+            font-size: 17px;
+            color: black;
+            white-space: nowrap;
+            margin-top: 65px;
+            margin-left: 27px;
+            z-index: 1;
+        }
+        #label_profil_picture {
+            border-radius: 50%;
+            margin: auto;
+            cursor: pointer;
+            width: 150px;
+            height: 150px;
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            border-radius: 100px;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #DBDBDB;
+        }
+            #label_profil_picture_img {
+                width: auto;
+                max-width: 150px;
+                max-height: 150px;
+                height: auto;
+                margin: auto;
+                z-index: 1;
+            }
+            #label_profil_picture_width_img {
+                width: auto;
+                max-height: 150px;
+                height: auto;
+                margin: auto;
+                z-index: 1;
+                position: absolute;
+                left: -25%;
+            }
+            #label_profil_picture_height_img {
+                width: auto;
+                max-width: 150px;
+                height: auto;
+                margin: auto;
+                z-index: 1;
+                position: absolute;
+                top: -25%;
+            }
+            #label_profil_picture img:hover {
+                opacity: 0.3;
+                transition: 0.7s;
+                cursor: pointer;
+            }
+    #profil_picture_others {
+        border-radius: 50%;
+            margin: auto;
+            width: 150px;
+            height: 150px;
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+    }
+        #profil_picture_others_img {
+            width: auto;
+            max-width: 150px;
+            max-height: 150px;
+            height: auto;
+            margin: auto;
+            z-index: 1;
+        }
+        #profil_picture_others_width_img {
+            width: auto;
+            max-height: 150px;
+            height: auto;
+            margin: auto;
+            z-index: 1;
+            position: absolute;
+            left: -25%;
+        }
+        #profil_picture_others_height_img {
+            width: auto;
+            max-width: 150px;
+            height: auto;
+            margin: auto;
+            z-index: 1;
+            position: absolute;
+            top: -25%;
+        }
+        
+    #info {
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 300;
+    }
+        #compte {
+            display: flex;
+            color: black;
+            justify-content: space-around;
+        }
+            #username {
+                font-size: 23px;
+                margin: auto;
+            }
+            #block_fake_for_margin {
+                margin: auto 10px;
+            }
+            #follow_or_edit {
+                border: 1px solid #8b8b8b;
+                background-color: white;
+                cursor: pointer;
+                color: black;
+                font-weight: 400;
+                font-size: 14px;
+                padding: 5px 15px;
+                margin: auto;
+                border-radius: 3px;
+            }
+        #stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+            .number {
+                font-weight: 400;
+            }
+            #post {
+            }
+            #follower {
+                margin: 0 20px;
+            }
+            #following {
+            }
+
+#content {
+    
+}
+    #block {
+        display: flex;
+        justify-content: space-between;
+        margin: 32px 0;
+    }
+    .box {
+        width: 310px;
+        height: 310px;
+        display: flex;
+        background-color: white;
+        cursor: pointer;
+    }
+        .box img {
+            max-width: 310px;
+            width: auto;
+            max-height: 310px;
+            height: auto;
+            margin: auto;
+        }
+        .frame_display_likes_and_comments {
+            display: flex;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 310px;
+            height: 310px;
+            z-index: 0;
+        }
+            .display_likes_and_comments {
+                margin: auto;
+                display: flex;
+            }
+                .likes_box {
+                    margin: auto;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    margin-right: 30px;
+                    margin-top: 20px;
+                }
+                    .likes_box img {
+                        width: 20px;
+                        margin-bottom: 10px;
+                    }
+                    .nb_likes {
+                        color: white;
+                        margin: auto;
+                        font-family: "IBM Plex Sans Condensed";
+                        font-size: 14px;
+                    }
+                    .comments_box {
+                        margin: auto;
+                        display: flex;
+                        flex-direction: column-reverse;
+                        margin-top: 20px;
+                    }
+                        .comments_box img {
+                            width: 20px;
+                            margin-bottom: 10px;
+                        }
+                        .nb_comments {
+                            color: white;
+                            margin: auto;
+                            font-family: "IBM Plex Sans Condensed";
+                            font-size: 14px;
+                        }
+
+    .empty_box {
+        width: 310px;
+        height: 310px;
+        display: flex;
+    }
+    #no_post {
+        margin: 30px auto auto auto;
+        text-align: center;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 200;
+    }
+
+
+#black_opacity {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(50, 50, 50, 0.9);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    cursor: pointer;
+}
+.hide_black_opacity {
+    display: none!important;
+}
+
+.stop_scroll {
+    overflow: hidden;
+}
+
+    #close {
+        position: absolute;
+        cursor: pointer;
+        right: 30px;
+        top: 80px;
+        z-index: 2;
+    }
+        #close img {
+            width: 20px;
+        }
+    #nav_fake {
+        height: 52px;
+    }
+    #box_display {
+      margin: auto;
+      display: flex;
+      background-color: white;
+      width: auto;
+      cursor: auto;
+    }
+        #img_display {
+            height: 60vh;
+        }
+        #content_display {
+            display: flex;
+            flex-direction: column;
+            font-family: "IBM Plex Sans Condensed";
+            height: 60vh;
+            margin: 0 10px;
+            min-width: 150px;
+            justify-content: space-between;
+        }
+
+                #profil_display {
+                    display: flex;
+                    border-bottom: 1px solid #dedede;
+                    padding: 10px 0;
+                    justify-content: space-between;
+                }
+                #profil_img_name_display {
+                    display: flex;
+                    width: 40px;
+                }
+                    #profil_display img {
+                        margin: auto 0;
+                        width: 35px;
+                        height: 35px;;
+                        border-radius: 100px;
+                    }
+                    #name_display {
+                        margin: auto 0 auto 5px;
+                        font-weight: 400;
+                        font-size: 18px;
+                    }
+                #delete_post_display {
+                    display: flex;
+                    cursor: pointer;
+                }
+                    #delete_post_display img {
+                        width: 20px;
+                        height: 20px;
+                        margin: auto;
+                    }
+                #title_display {
+                    font-weight: 300;
+                    font-size: 15px;
+                    padding: 1vh 0 0 0;
+                }
+                #friends_display {
+                    font-weight: 300;
+                    font-size: 13px;
+                }
+            
+            #box_middle {
+                overflow: auto;
+                margin: 3vh 0 4vh 0;
+                height: 10000000px;
+            }
+                #all_comm_display {
+                    font-weight: 200;
+                    font-size: 14px;
+                    overflow: auto;
+                }
+                    .comments {
+                        margin: 4px 0;
+                        display: flex;
+                        justify-content: space-between;
+                        font-family: 'IBM Plex Sans Condensed';
+                        font-size: 13px;
+                        color: black;
+                    }
+                        .comment_content {
+                        }
+                            .user {
+                                font-weight: 400;
+                                margin-right: 5px;
+                            }
+                            .text {
+                                font-weight: 200;
+                            }
+                        .delete_comment {
+                            cursor: pointer;
+                        }
+                            .delete_comment img {
+                                width: 7px;
+                            }
+                        .like_comment {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            margin: 15px 0 10px 0;
+                        }
+            
+                .info_display {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                    .like_display {
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                        .like_display img {
+                            width: 25px;
+                            height: 25px;
+                        }
+                        .number_likes {
+                            margin: 5px auto;
+                            font-size: 13px;
+                        }
+                    .comm_display {
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                        .comm_display img {
+                            width: 25px;
+                            height: 25px;
+                        }
+                        .number_comments {
+                            margin: 5px auto;
+                            font-size: 13px;
+                        }
+            .form_comment {
+            border-top: 1px solid #dedede;
+            margin-bottom: 5px;
+            }
+            .form_comment input {
+                width: 90%;
+                border: none;
+                padding: 10px 0;
+                outline: none;
+                font-size: 13px;
+                font-family: 'IBM Plex Sans Condensed';
+                font-weight: 200;
+            }
+            .submit_button {
+                display: none;
+            }

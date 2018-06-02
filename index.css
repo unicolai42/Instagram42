@@ -1,0 +1,179 @@
+#wrapper_content {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin: 90px auto 0 auto;
+}
+
+.post {
+    border: 1px solid #dedede;
+    margin: 20px auto;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    background-color: white;
+}
+    .head_post {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px;
+    }
+        .login {
+            display: flex;
+        }
+            .login img {
+                margin: auto;
+                width: 28px;
+                height: 28px;;
+                border-radius: 100px;
+            }
+            .text_login {
+                margin: auto 5px;
+                font-family: 'IBM Plex Sans Condensed';
+                font-size: 15px;
+                font-weight: 400;
+                color: black;
+            }
+        .delete_post {
+            margin: auto 0;
+            font-family: 'IBM Plex Sans Condensed';
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+            .delete_post img {
+                width: 18px;
+            }
+    .photo {
+        margin: auto;
+    }
+        .photo img {
+            max-width: 100%;
+            height: auto;
+        }
+    .legend {
+        display: flex;
+        flex-direction: column;
+    }
+        .like_comment {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 20px 10px 20px;
+        }
+            .chiffre {
+                display: flex;
+                font-family: 'IBM Plex Sans Condensed';
+                font-size: 13px;
+                font-weight: 500;
+                margin: auto 0;
+                cursor: pointer;
+            }
+                .like_chiffre {
+                    color: black;
+                    margin-right: 10px;
+                }
+                .comm_chiffre {
+                    display: flex;
+                    color: black;
+                }
+                    .text_comments {
+                        margin-left: 2px;
+                    }
+            .icon {
+                display: flex;
+            }
+                .like_icon {
+                    cursor: pointer;
+                }
+                .comm_icon {
+                    cursor: pointer;
+                    margin: auto 0 auto 15px;
+                }
+                    .like_icon img {
+                        width: 22px;
+                        height: 22px;
+                    }
+                    .comm_icon img {
+                        width: 22px;
+                        height: 22px;
+                    }
+        .text_post {
+            display: flex;
+            flex-direction: column;
+            margin: 0 20px;
+            font-family: 'IBM Plex Sans Condensed';
+            color: black;
+        }
+            .title_post {
+                font-size: 14px;
+                font-weight: 300;
+            }
+            .followers {
+                font-size: 13px;
+                margin: 10px 0;
+                font-weight: 300;
+            }
+                .with {
+                    /* font-style: italic; */
+                    font-size: 13px;
+                    font-weight: 200;
+                }
+                .user_id {
+                    margin: auto 5px;
+                }
+
+        #liked_by {
+            display: none;
+            margin: 0 20px;
+            font-family: 'IBM Plex Sans Condensed';
+            font-size: 13px;
+            font-weight: 200;
+            margin-top: 15px;
+            height: 35px;
+            overflow: auto;
+        }
+        #all_comments {
+            display: none;
+            flex-direction: column;
+            margin: 0 20px;
+        }
+            .comments {
+                margin: 4px 0;
+                display: flex;
+                justify-content: space-between;
+                font-family: 'IBM Plex Sans Condensed';
+                font-size: 13px;
+                color: black;
+            }
+                .comment_content {
+                }
+                    .user {
+                        font-weight: 400;
+                        margin-right: 5px;
+                    }
+                    .text {
+                        font-weight: 200;
+                    }
+                .delete_comment {
+                    cursor: pointer;
+                }
+                    .delete_comment img {
+                        width: 10px;
+                    }
+    .form_comment {
+        border-top: 1px solid #dedede;
+        margin: 10px 20px;
+    }
+        .form_comment input {
+            width: 90%;
+            border: none;
+            padding: 20px 0 10px 0;
+            outline: none;
+            font-size: 13px;
+            font-family: 'IBM Plex Sans Condensed';
+            font-weight: 200;
+        }
+        .submit_button {
+            display: none;
+        }
