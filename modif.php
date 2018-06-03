@@ -58,11 +58,11 @@
             <div id="block">
                 <div id="title">Editing your information</div>
                 <form action="check_modif.php" method="POST">
-                    <label for="username"><span id="modifusername">Username</span><input name="username" type="text" id="username" value="<?PHP echo $_SESSION['username'] ?>"></label>
-                    <label for="oldmdp"><span id="modifoldmdp">Old password</span><input name="oldmdp" type="password" id="oldmdp" <?PHP if ($_SESSION['wrong_oldmdp']) echo "placeholder='Incorrect password' "; else if ($_SESSION['change_pwd']) echo "placeholder='Leave this field empty'"; ?>></label>
-                    <label for="newmdp1"><span id="modifnewmdp">New password</span><input name="newmdp1" type="password" id="newmdp1" <?PHP if ($_SESSION['wrong_newmdp']) echo "placeholder='Password not identical' "; else if ($_SESSION['wrong_len_newmdp']) echo "placeholder='Reinforce the password'"; else if ($_SESSION['change_pwd']) echo "placeholder='Insert your new password'"; ?>></label>
-                    <label for="newmdp2"><span id="modifnewmdp">New password</span><input name="newmdp2" type="password" id="newmdp2" <?PHP if ($_SESSION['wrong_newmdp']) echo "placeholder='Password not identical' "; else if ($_SESSION['wrong_len_newmdp']) echo "placeholder='Reinforce the password'"; else if ($_SESSION['change_pwd']) echo "placeholder='Confirm it'"; ?>></label>
-                    <label for="mail"><span id="modifmail">Email</span><input name="mail" type="text" id="mail" value="<?PHP echo $_SESSION['mail'] ?>"></label>
+                    <label for="username"><span id="modifusername" class="label_text">Username</span><input name="username" type="text" id="username" value="<?PHP echo $_SESSION['username'] ?>"></label>
+                    <label for="oldmdp"><span id="modifoldmdp" class="label_text">Old password</span><input name="oldmdp" type="password" id="oldmdp" <?PHP if ($_SESSION['wrong_oldmdp']) echo "placeholder='Incorrect password' "; else if ($_SESSION['change_pwd']) echo "placeholder='Leave this field empty'"; ?>></label>
+                    <label for="newmdp1"><span id="modifnewmdp" class="label_text">New password</span><input name="newmdp1" type="password" id="newmdp1" <?PHP if ($_SESSION['wrong_newmdp']) echo "placeholder='Password not identical' "; else if ($_SESSION['wrong_len_newmdp']) echo "placeholder='Reinforce the password'"; else if ($_SESSION['change_pwd']) echo "placeholder='Insert your new password'"; ?>></label>
+                    <label for="newmdp2"><span id="modifnewmdp" class="label_text">New password</span><input name="newmdp2" type="password" id="newmdp2" <?PHP if ($_SESSION['wrong_newmdp']) echo "placeholder='Password not identical' "; else if ($_SESSION['wrong_len_newmdp']) echo "placeholder='Reinforce the password'"; else if ($_SESSION['change_pwd']) echo "placeholder='Confirm it'"; ?>></label>
+                    <label for="mail"><span id="modifmail" class="label_text">Email</span><input name="mail" type="text" id="mail" value="<?PHP echo $_SESSION['mail'] ?>"></label>
                     <input type="submit" id="submit" value="Modifier">
                 </form>
                 <a href='profil.php?user_id=<?= $_COOKIE['user_id']?>' id='back_to_profil'>Back to profil</a>

@@ -16,7 +16,7 @@
             font-size: 22px;
             text-align: center;
             font-weight: 300;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
         form {
             display: flex;
@@ -34,47 +34,25 @@
                     font-family: 'Raleway', sans-serif;
                     font-weight: 200;
                     font-size: 16px;
-                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
                 }
-                input {
-                    height: 28px;
-                    width: 180px;
-                    font-family: "IBM Plex Sans Condensed";
-                    font-weight: 200;
-                    font-size: 16px;
-                    padding-left: 20px;
-                    border-radius: 6px;
-                    margin: 10px auto;
-                }
-                    #modifusername {
-                        margin-left: 94px;
+                    .label_text {
+                        margin: auto 0 auto auto;
                     }
-                    #username {
-                        margin-left: 34px;
-                    }
-                    #modifoldmdp {
-                        margin-left: 18px;
-                    }
-                    #oldmdp {
-                        margin-left: 32px;
-                    }
-                    #modifnewmdp {
-                        margin-left: 4px;
-                    }
-                    #newmdp1 {
-                        margin-left: 30px;
-                    }
-                    #newmdp2 {
-                        margin-left: 30px;
-                    }
-                    #modifmail {
-                        margin-left: 134px;
-                    }
-                    #mail {
-                        margin-left: 30px;
+                    input {
+                        height: 28px;
+                        width: 180px;
+                        font-family: "IBM Plex Sans Condensed";
+                        font-weight: 200;
+                        font-size: 16px;
+                        padding-left: 20px;
+                        border-radius: 6px;
+                        margin: auto 0 auto 80px;
                     }
                     #submit {
-                        margin-top: 30px;
+                        margin: 50px auto auto auto;
                         background-color: #2dbe60;
                         color: white;
                         cursor: pointer;
