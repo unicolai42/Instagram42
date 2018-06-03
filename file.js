@@ -479,8 +479,7 @@ function submit_comment() {
     });
 }
 
-function create_new_comment_from_scratch(e, dataset_id) {
-    var all_comments = document.getElementById('all_comments');
+function create_new_comment_from_scratch(e, dataset_id, all_comments) {
         var comments = document.createElement("div");
         all_comments.appendChild(comments);
         comments.setAttribute('class', 'comments');
@@ -504,48 +503,39 @@ function create_new_comment_from_scratch(e, dataset_id) {
 }
 
 function display_new_comment(e, dataset_id) {
-    check_if_at_least_one_comment = document.getElementsByClassName('comments')[0];
-    console.log(e.target.value);
-    if (!check_if_at_least_one_comment)
+    var post = e.target;
+    if (location.pathname == '/profil.php') {
+        while (!post.id || post.id != 'box_display')
+            post = post.parentElement;
+        
+        var all_comments = document.getElementById('all_comments');
+        var nb_comments = document.getElementsByClassName('comments').length;
+        console.log(nb_comments);
+        console.log(all_comments);
+    }
+    else {
+        while (!post.className || post.className != 'post')
+            post = post.parentElement;
+
+        var all_comments = post.childNodes[2].childNodes[3];
+        var nb_comments = post.childNodes[2].childNodes[3].childNodes.length;
+    }
+
+    if (nb_comments == 0)
     {
-        console.log('eah');
-        create_new_comment_from_scratch(e, dataset_id);
-        new_comment = document.getElementsByClassName('comments')[0];
+        create_new_comment_from_scratch(e, dataset_id, all_comments);
+        new_comment = all_comments.childNodes[0];
     }
     else
     {
-        new_comment = document.getElementsByClassName('comments')[0].cloneNode(true);
+        new_comment = all_comments.childNodes[0].cloneNode(true);
+        var first_comment = all_comments.childNodes[0];
 
-        if (location.pathname == '/profil.php') {
-            var all_comments = document.getElementById('all_comments');
-            var first_comment = document.getElementsByClassName('comments')[0];
-        }
-        else {
-            var legend = e.path[2];
-            var liked_by = legend.childNodes[2];
-            var all_comments = legend.childNodes[3]; 
-            
-            all_comments.style.display = 'block';
-            if (all_comments.childNodes.length > 7) {
-                all_comments.style.height = '20vh';
-                all_comments.style.overflow = 'auto';
-            }
-
-            console.log(all_comments.parentElement.childNodes[2].childNodes.length); 
-            if (all_comments.parentElement.childNodes[2].childNodes.length > 0)
-                liked_by.style.display = 'block';
-
-            var first_comment = all_comments.childNodes[0];
-        }
-        console.log(all_comments);
-        console.log(new_comment);
-        console.log(first_comment);
         all_comments.insertBefore(new_comment, first_comment);
         new_comment.dataset.id = dataset_id;
         
-        if (first_comment.childNodes[0].childNodes[0].textContent != getCookie('username'))
+        if (!first_comment.childNodes[1])
         {
-            console.log(all_comments.childNodes);
             var delete_comment = document.createElement("div");
             new_comment.appendChild(delete_comment);
             delete_comment.setAttribute('onclick', 'delete_comment(this)');
@@ -555,9 +545,22 @@ function display_new_comment(e, dataset_id) {
                 img.src = 'ressources/delete.png';
         }
     }
+    if (location.pathname != '/profil.php') {
+        var legend = e.path[2];
+        var liked_by = legend.childNodes[2];
+        var all_comments = legend.childNodes[3];
+
+        if (all_comments.parentElement.childNodes[2].childNodes.length > 0)
+            liked_by.style.display = 'block';
+        
+        all_comments.style.display = 'block';
+        if (all_comments.childNodes.length > 7) {
+            all_comments.style.height = '20vh';
+            all_comments.style.overflow = 'auto';
+        }
+    }
     new_comment.childNodes[0].childNodes[0].textContent = getCookie('username');
     new_comment.childNodes[0].childNodes[1].textContent = e.target.value;
-    console.log(new_comment);
 }
 
 function new_comment(e) {
