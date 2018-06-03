@@ -2,7 +2,7 @@
     session_start();
 
     $mail = $_POST['mail'];
-    $mdp = hash('whirlpool', $_POST['mdp']);
+    $mdp = $_POST['mdp'];
     $username = $_POST['username'];
 
     $_SESSION['mail'] = $mail;
@@ -27,6 +27,8 @@
         header("Location: inscription.php");
         exit();
     }
+
+    $mdp = hash('whirlpool', $mdp);
 
     $pdo = new PDO('mysql:host=127.0.0.1;dbname=Camagru', 'root', '00000000', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
     // $pdo = new PDO('mysql:host=unicolai.asndl.xyz;dbname=unicolai_camagru', 'unicolai_root', '9FmDNsVmEa', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
