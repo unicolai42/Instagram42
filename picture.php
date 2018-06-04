@@ -64,6 +64,8 @@
                     //     exit();
                     // }
                     // $stickers = mysqli_fetch_all($result);
+
+                    $i = 0;
                     foreach ($stickers as $sticker) {
                         echo "<div class='sticker' data-id='".$sticker[0]."' onclick='put_sticker(this)'><img src='data:image;base64,".file_get_contents($sticker[2])."'></div>";
                         $i++;
@@ -71,7 +73,7 @@
                 ?>
                         <form enctype="multipart/form-data" action="add_sticker.php" method="POST" class='sticker' id='submit_form'>
                             <input type="hidden" name="MAX_FILE_SIZE" value= "60000000">
-                            <label for="plus_click"><?php if (!$_SESSION['error_img']) echo "<img id='plus_sticker' src='ressources/plus.png' alt=''>"; else echo "<div id='text_sticker'>Download problem. Retry ?</div>"; ?></label>
+                            <label for="plus_click"><?php if (empty($_SESSION['error_img'])) echo "<img id='plus_sticker' src='ressources/plus.png' alt=''>"; else echo "<div id='text_sticker'>Download problem. Retry ?</div>"; ?></label>
                                 <input id="plus_click" name="img" onchange='upload()' class="input-file" type="file">
                             <input type="submit" class='input-file'>
                         </form>

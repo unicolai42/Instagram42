@@ -128,7 +128,7 @@
                             }
                             echo '</div>';
                             echo '<div class="icon">';
-                            if ($_COOKIE['user_id'])
+                            if (!empty($_COOKIE['user_id']))
                                 $user_id = $_COOKIE['user_id'];
                             else
                                 $user_id = 0;
@@ -278,12 +278,12 @@
                             {
                                 echo "<div class='comments' data-id='".$comment[0]."'>";
                                    echo "<div class='comment_content'><a href='profil.php?user_id=".$comment[2]."' class='user'>".$comment[6]."</a>"."<span class='text'>".$comment[3]."</span></div>";
-                                    if ($comment[6] == $_COOKIE['username']) echo "<div onclick='delete_comment(this)' class='delete_comment'><img src='ressources/delete.png' alt='delete'></div>";
+                                    if (!empty($_COOKIE['username']) && $comment[6] == $_COOKIE['username']) echo "<div onclick='delete_comment(this)' class='delete_comment'><img src='ressources/delete.png' alt='delete'></div>";
                                 echo "</div>";
                             }
                         echo "</div>";
                         echo '
-                        <form class="form_comment" action="'; if ($_COOKIE['user_id']) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
+                        <form class="form_comment" action="'; if (!empty($_COOKIE['user_id'])) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
                             <input class="comment_answer" type="text" name="comment" placeholder="Add a comment...">
                             <input type="hidden" name="post_id" value="'.$value[0].'">
                             <input type="submit" class="submit_button">

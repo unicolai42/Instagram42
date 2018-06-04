@@ -353,10 +353,12 @@ function like_or_dislike_post(elem) {
             var request = new XMLHttpRequest();
             request.open('POST', 'dislike_post.php', true);
             request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            if (location.pathname == '/profil.php')
-                var post_id = elem.parentElement.parentElement.parentElement.dataset.id;
-            else
-                var post_id = elem.parentElement.parentElement.parentElement.parentElement.dataset.id;
+            
+            var post = elem;
+            while (!post.dataset.id)
+                post = post.parentElement;
+            post_id = post.dataset.id;
+
             request.send('post_id=' + post_id);
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200)
@@ -855,23 +857,6 @@ function search() {
     }
 }
 
-function push_img(file)
-{
-    // console.log("uid" + user_id);
-    var request = new XMLHttpRequest();
-    request.open('POST', file, true);
-    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.send();
-    request.onreadystatechange = function ()
-    {
-        if (request.readyState == 4 && request.status == 200)
-        {
-            var read_file = request.responseText;
-            document.getElementById('img_display').src = 'data:image;base64,' + read_file;
-        }
-    }
-}
-
 function push_friends(friends_post, users) {
     var array_friends = friends_post.split(' ');
     console.log(friends_post);
@@ -1035,17 +1020,18 @@ if (location.pathname == '/profil.php')
         if (findGetParameter('post_id'))
             expand_post(findGetParameter('post_id'));
         
-        var box = document.getElementsByClassName('box');
-        Array.from(box).forEach(function(e) {
+        var post = document.getElementsByClassName('box');
+        Array.from(post).forEach(function(e) {
             e.addEventListener('click', function(e) {
-                var block = e.target;
+                var post = e.target;
 
-                while (block.id != 'block')
-                    block = block.parentElement;
+                while (post.className != 'box')
+                    post = post.parentElement;
                 
-                console.log(block);
-                var post_id = block.dataset.id;
-                expand_post(post_id);
+                console.log(post);
+                var post_id = post.dataset.id;
+                console.log(post_id);
+                expand_post(post, post_id);
                 if (findGetParameter('user_id') == getCookie('user_id'))
                     delete_post_display_click(post_id);
             });
@@ -1053,7 +1039,8 @@ if (location.pathname == '/profil.php')
     }
 }
 
-function expand_post(post_id) {
+function expand_post(post, post_id) {
+    console.log(post_id);
     var request = new XMLHttpRequest();
     request.open('POST', 'black_opacity_box_profil.php', true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -1080,8 +1067,9 @@ function expand_post(post_id) {
             var post_nb_likes = JSON.parse(this.responseText)['post_nb_likes'];
             var commented_post = JSON.parse(this.responseText)['post_commented'];
             var post_nb_comments = JSON.parse(this.responseText)['post_nb_comments'];
-            
-            push_img(img_post);
+
+
+            var push_img = document.getElementById('img_display').src = post.childNodes[1].src;
             var push_title = document.getElementById('title_display').textContent = title_post;
             if (friends_post)
                 push_friends(friends_post, users);

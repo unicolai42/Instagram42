@@ -32,7 +32,6 @@
 
     if (empty($user_data))
     {
-        echo 'here';exit();
         $_SESSION['error'] = 'wrong username';
         header("Location: connexion.php");
         exit();

@@ -12,9 +12,9 @@
                 </form>
             </div>
             <div id="boxright">
-                <a id='picture' href="<?php if ($_COOKIE['user_id']) echo 'picture.php'; else echo 'connexion.php'?>"><img src="ressources/picture.png" alt=""></a>
+                <a id='picture' href="<?php if (!empty($_COOKIE['user_id'])) echo 'picture.php'; else echo 'connexion.php'?>"><img src="ressources/picture.png" alt=""></a>
             <?PHP
-                if (!empty($_COOKIE['user_id']))
+                if (empty($_COOKIE['user_id']))
                     echo '<a href="connexion.php" id="like_notif"><img src="ressources/like.png" alt=""></a>';
                 else
                 {
@@ -54,7 +54,7 @@
                 }
             ?>
                 <?PHP if (!empty($_COOKIE['username'])) echo '<a href="profil.php?user_id='.$_COOKIE['user_id'].'" id="user_logo"><img src="ressources/user.png" alt=""></a>'; else echo '<a href="connexion.php" id="connexion">SIGN IN</a>'; ?>
-                <?PHP if ($_COOKIE['user_id']) echo '<a href="logout.php" id="logout"><img src="ressources/logout.png" alt=""></a>' ?>
+                <?PHP if (!empty($_COOKIE['user_id'])) echo '<a href="logout.php" id="logout"><img src="ressources/logout.png" alt=""></a>' ?>
             </div>
         </div>
     </div>

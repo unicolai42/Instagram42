@@ -9,6 +9,11 @@
     //     exit();
     // }
 
+    if (empty($_POST['post_id'])) {
+        echo 'post id empty';
+        exit();
+    }
+
     $sql = "SELECT * FROM posts WHERE id = :post_id;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->bindParam(':post_id', $_POST['post_id']);

@@ -58,7 +58,8 @@
         header("Location: modif.php");
         exit();
     }
-    if ($_POST['newmdp1'] != $_POST['newmdp2'])
+    
+    if ($_POST['newmdp1'] !== $_POST['newmdp2'])
     {
         $_SESSION['wrong_newmdp'] = "true";
         $_SESSION['modif'] = 'error';
