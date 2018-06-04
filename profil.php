@@ -1,6 +1,6 @@
 <?PHP
     session_start();
-    if (!$_COOKIE['username'])
+    if (empty($_COOKIE['username']))
     {
         $username = '';
         $user_id = -1;
@@ -62,7 +62,7 @@
                 if ($user_id == $_GET['user_id']) {
                     echo
                     "<div id='circle_frame_my_profile'></div>
-                    <div id='text_picture'>"; if ($_SESSION['error'] == "pb photo") echo "Wrong format. Try again ?"; else echo "Change photo</div>";
+                    <div id='text_picture'>"; if (!empty($_SESSION['error']) && $_SESSION['error'] == "pb photo") echo "Wrong format. Try again ?"; else echo "Change photo</div>";
                     echo
                     "<label id='label_profil_picture' for='input_profil_picture'><img id='label_profil_picture_img' src='data:image;base64,".$profil."'></label>";
                     echo

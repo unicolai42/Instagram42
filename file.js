@@ -1038,10 +1038,13 @@ if (location.pathname == '/profil.php')
         var box = document.getElementsByClassName('box');
         Array.from(box).forEach(function(e) {
             e.addEventListener('click', function(e) {
-                var i = 1;
-                if (!e.path[1].dataset.id)
-                    i = 0;
-                var post_id = e.path[i].dataset.id;
+                var block = e.target;
+
+                while (block.id != 'block')
+                    block = block.parentElement;
+                
+                console.log(block);
+                var post_id = block.dataset.id;
                 expand_post(post_id);
                 if (findGetParameter('user_id') == getCookie('user_id'))
                     delete_post_display_click(post_id);

@@ -1,6 +1,6 @@
 <?PHP
     session_start();
-    if ($_FILES['img'] && $_FILES['img']['size'] != 0)
+    if (!empty($_FILES['img']) && $_FILES['img']['size'] != 0)
     {
         $_SESSION['upload'] = $_FILES['img'];
         $_SESSION['upload_content'] = file_get_contents($_FILES['img']['tmp_name']);
@@ -28,13 +28,13 @@
                     </div>
                     <form action="check_inscription.php" method="post">
                         <input class="input" id="mail" type="text" placeholder="<?PHP
-                        if ($_SESSION["error"] == "mail pris") echo "This email is already taken"; else if ($_SESSION["error"] == "mail vide") echo "Please enter a valid mail"; else echo "Email"; ?>"
-                        <?PHP if ($_SESSION['error'] != "mail pris" && $_SESSION['error'] != "mail vide") echo "value='".$_SESSION['mail']."'"; ?> name="mail">
+                        if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mail pris") echo "This email is already taken"; else if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mail vide") echo "Please enter a valid mail"; else echo "Email"; ?>"
+                        <?PHP if (empty($_SESSION["error"]) || (!empty($_SESSION["error"]) && $_SESSION['error'] != "mail pris" && $_SESSION['error'] != "mail vide")) { echo "value='"; if (!empty($_SESSION['mail'])) echo $_SESSION['mail']; echo "'"; } ?> name="mail">
                         <input class='input' id="mdp" type="password" placeholder="<?PHP
-                        if ($_SESSION["error"] == "mdp trop court") echo "Please reinforce your password"; else echo "Password (4 signs minimum)"; ?>" name="mdp">
+                        if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mdp trop court") echo "Please reinforce your password"; else echo "Password (4 signs minimum)"; ?>" name="mdp">
                         <input class="input" id="username" type="text" placeholder="<?PHP
-                        if ($_SESSION["error"] == "username pris") echo "This username is not available"; else if ($_SESSION['error'] == "username vide") echo "You have to choose an username"; else echo "Username"; ?>"
-                        <?PHP if ($_SESSION['error'] != "username pris") echo "value='".$_SESSION['username']."'"; ?> name="username">
+                        if (!empty($_SESSION["error"]) && $_SESSION["error"] == "username pris") echo "This username is not available"; else if (!empty($_SESSION["error"]) && $_SESSION['error'] == "username vide") echo "You have to choose an username"; else echo "Username"; ?>"
+                        <?PHP if (!empty($_SESSION["error"]) && $_SESSION['error'] != "username pris") echo "value='".$_SESSION['username']."'"; ?> name="username">
                         <input class="input" id="submit" type="submit" value="SIGN UP">
                     </form>
                 </div>

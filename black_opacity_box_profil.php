@@ -49,7 +49,7 @@
     // }
     // $comments = mysqli_fetch_all($result);
 
-    if ($_COOKIE['user_id'])
+    if (!empty($_COOKIE['user_id']))
     {
         $sql = "SELECT * FROM likes WHERE user_id = :user_id && post_id = :post_id;";
         $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

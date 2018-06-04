@@ -5,7 +5,7 @@
     $pdo = new PDO('mysql:host=127.0.0.1;dbname=Camagru', 'root', '00000000', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
     // $pdo = new PDO('mysql:host=unicolai.asndl.xyz;dbname=unicolai_camagru', 'unicolai_root', '9FmDNsVmEa', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-    if ($_SESSION['activate_username']) {
+    if (!empty($_SESSION['activate_username'])) {
         $username = $_SESSION['activate_username'];
         unset($_SESSION['activate_username']);
         $pwd = $_SESSION['activate_pwd'];
@@ -27,8 +27,12 @@
     // $user_data = $req->fetch();
     // $req->closeCursor();
 
-    if (!$user_data)
+    // echo $username.' '.$pwd.'<br>';
+    // print_r($user_data);exit();
+
+    if (empty($user_data))
     {
+        echo 'here';exit();
         $_SESSION['error'] = 'wrong username';
         header("Location: connexion.php");
         exit();
@@ -61,10 +65,10 @@
     unset($_SESSION['username']);
     setcookie('user_id', $user_data[0]);
     setcookie('username', $user_data[1]);
-    if ($_SESSION['upload'])
+    if (!empty($_SESSION['upload']))
         header("Location: upload.php");
-    else if ($_SESSION['comment'] && $_SESSION['post_id'])
+    else if (!empty($_SESSION['comment']) && !empty($_SESSION['post_id']))
         header("Location: check_comment.php");
-    else
+    else 
         header("Location: index.php");
 ?>

@@ -1,7 +1,7 @@
 <?PHP
     session_start();
     
-    if ($_SESSION['comment'] && $_SESSION['post_id'])
+    if (!empty($_SESSION['comment']) && !empty($_SESSION['post_id']))
     {
         $comment = $_SESSION['comment'];
         unset($_SESSION['comment']);
