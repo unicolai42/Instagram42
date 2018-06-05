@@ -32,7 +32,7 @@
                         <div id="text_logo">Instagram</div>
                     </div>
                     <form action="check_connexion.php" method="post">
-                        <input class="input" id="username" type="text" <?PHP if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd') echo 'value="'.ucfirst($_SESSION['username']).'"'; else echo 'placeholder="'; if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong username') echo 'Incorrect username'; else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate') echo 'You have to activate your account'; else echo 'Username'; echo '" name="username">';?>
+                        <input class="input" id="username" type="text" <?PHP if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd' && !empty($_SESSION['username'])) echo 'value="'.ucfirst($_SESSION['username']).'"'; else echo 'placeholder="'; if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong username') echo 'Incorrect username'; else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate') echo 'You have to activate your account'; else echo 'Username'; echo '" name="username">';?>
                         <input class='input' id="pwd" type="password" placeholder="<?PHP if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong username') echo 'Try again'; else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd') echo 'Incorrect password'; else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate') echo 'A mail has been sent to you'; else echo 'Password'; ?>" name="pwd">
                         <input class="input" id="submit" type="submit" value="SIGN IN">
                     </form>
@@ -43,12 +43,12 @@
                 <div id="frame_error">
                     <div id="absolute_error">
                     <?PHP
-                        if (!empty($_SESSION['error']) == 'wrong pwd' && $_SESSION['username'])
+                        if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd' && !empty($_SESSION['username']))
                             echo '<a class="error" href="forget_pwd.php">Send back my password by mail</a>';
-                        else if (!empty($_SESSION['error']) == 'unactivate' && !empty($_SESSION['username']))
+                        else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate' && !empty($_SESSION['username']))
                             echo '<a class="error" href="resend_activate_mail.php">Send back the activation mail</a>';
                         
-                        if (!empty($_SESSION['error']) == 'unactivate' && !empty($_SESSION['send_mail']) || !empty($_SESSION['error']) == 'wrong pwd' && !empty($_SESSION['send_mail']) || !empty($_SESSION['inscription'])) {
+                        if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate' && !empty($_SESSION['send_mail']) || !empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd' && !empty($_SESSION['send_mail']) || !empty($_SESSION['inscription'])) {
                             echo "<div id='send_mail' class='error'>A link has been sent to you by mail at the following address: : ".$_SESSION['send_mail']." !</div>";
                             unset($_SESSION['send_mail']);
                             unset($_SESSION['inscription']);

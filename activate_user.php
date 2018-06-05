@@ -1,8 +1,8 @@
 <?PHP
     session_start();
 
-    include_once '../config/database.php';
-    include_once '../config/database_online.php';
+    include_once 'config/database.php';
+    include_once 'config/database_online.php';
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
     
     $sql = "UPDATE users SET activate = 1 WHERE cle = :cle;";

@@ -26,10 +26,15 @@
     
     Click on the link below to reset your password.
     
-    http://localhost:8080/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle).'
+    ';
+    if ($_SERVER['SERVER_NAME'] == 'localhost')
+        $message .= 'http://localhost:8080/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
+    else
+        $message .= $_SERVER['SERVER_NAME'].'/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
+    
+    $message .= '
     
     ---------------
-    
     This is an automatic mail, thank you not to answer it.';
 
     $mail_sent = mail($destinataire, $sujet, $message);

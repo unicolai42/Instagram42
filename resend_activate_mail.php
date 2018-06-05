@@ -26,8 +26,13 @@
     To activate your account, please click on the link below
     or copy/past it into your browser.
     
-    http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle).'
+    ';
+    if ($_SERVER['SERVER_NAME'] == 'localhost')
+        $message .= 'http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
+    else
+        $message .= $_SERVER['SERVER_NAME'].'/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
     
+    $message .= '
     
     ---------------
     This is an automatic mail, thank you not to answer it.';
