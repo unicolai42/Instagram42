@@ -1,6 +1,10 @@
 <?PHP
     session_start();
-    
+    if (empty($_COOKIE)) {
+        header("Location: connexion.php");
+        exit();
+    }
+
     if (!empty($_SESSION['comment']) && !empty($_SESSION['post_id']))
     {
         $comment = $_SESSION['comment'];
@@ -8,7 +12,7 @@
         $post_id = $_SESSION['post_id'];
         unset($_SESSION['post_id']);
     }
-    else if ($_POST['comment'] && $_POST['post_id'])
+    else if (!empty($_POST['comment']) && !empty($_POST['post_id']))
     {
         $comment = $_POST['comment'];
         $post_id = $_POST['post_id'];
