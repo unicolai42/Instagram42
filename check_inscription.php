@@ -151,16 +151,19 @@
     $sujet = "Activer votre compte Instagram" ;
     
     // Le lien d'activation est composé du login(log) et de la clé(cle)
-    $message = 'Welcome to Instagram '.$username.',
+    $message = '
+    Welcome to Instagram '.$username.',
     
     To activate your account, please click on the link below
     or copy/past it into your browser.
     
     ';
     if ($_SERVER['SERVER_NAME'] == 'localhost')
-        $message .= 'http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
+        $message .= '
+    http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
     else
-        $message .= $_SERVER['SERVER_NAME'].'/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
+        $message .= '
+    https://'.$_SERVER['SERVER_NAME'].'/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
     
     $message .= '
     

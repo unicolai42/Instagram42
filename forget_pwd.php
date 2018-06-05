@@ -22,15 +22,18 @@
     $destinataire = $user[3];
     $sujet = 'Reset your Instagram password';
 
-    $message = 'Hello '.$username.',
+    $message = '
+    Hello '.$username.',
     
     Click on the link below to reset your password.
     
     ';
     if ($_SERVER['SERVER_NAME'] == 'localhost')
-        $message .= 'http://localhost:8080/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
+        $message .= '
+    http://localhost:8080/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
     else
-        $message .= $_SERVER['SERVER_NAME'].'/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
+        $message .= '
+    https://'.$_SERVER['SERVER_NAME'].'/change_pwd.php?username='.urlencode($username).'&cle='.urlencode($cle);
     
     $message .= '
     
