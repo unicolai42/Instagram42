@@ -9,7 +9,7 @@
     //     exit();
     // }
 
-    $sql = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'Camagru' AND TABLE_NAME = 'posts';";
+    $sql = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = '".$DB_BASE."' AND TABLE_NAME = 'posts';";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->execute();
     $next_id = $sth->fetch();
