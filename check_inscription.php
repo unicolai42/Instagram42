@@ -151,16 +151,21 @@
     $sujet = "Activer votre compte Instagram" ;
     
     // Le lien d'activation est composé du login(log) et de la clé(cle)
-    $message = 'Bienvenue sur Instagram '.$username.',
+    $message = 'Welcome to Instagram '.$username.',
     
-    Pour activer votre compte, veuillez cliquer sur le lien ci-dessous
-    ou le copier/coller dans votre navigateur.
+    To activate your account, please click on the link below
+    or copy/past it into your browser.
     
-    http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle).'
+    ';
+    if ($_SERVER['SERVER_NAME'] == 'localhost')
+        $message .= 'http://localhost:8080/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
+    else
+        $message .= $_SERVER['SERVER_NAME'].'/activate_user.php?username='.urlencode($username).'&cle='.urlencode($cle);
     
+    $message .= '
     
     ---------------
-    Ceci est un mail automatique, Merci de ne pas y répondre.';
+    This is an automatic mail, thank you not to answer it.';
     
     
     mail($destinataire, $sujet, $message); // Envoi du mail
