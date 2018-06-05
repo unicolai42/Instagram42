@@ -1017,8 +1017,26 @@ if (location.pathname == '/profil.php')
             e.stopPropagation();
         });
 
-        if (findGetParameter('post_id'))
-            expand_post(findGetParameter('post_id'));
+        if (findGetParameter('post_id')) {
+            var post;
+            var post_id = findGetParameter('post_id');
+            var blocks = document.getElementsByClassName('blocks');
+            Array.from(blocks).forEach(function(block) {
+                var box = block.childNodes;
+                console.log(box);
+                Array.from(box).forEach(function(elem) {
+                    if (elem.dataset) {
+                        if (elem.dataset.id == post_id) {
+                            post = elem;
+                            return;
+                        }
+                    }
+                });
+            });
+            console.log(post);
+
+            expand_post(post, findGetParameter('post_id'));
+        }
         
         var post = document.getElementsByClassName('box');
         Array.from(post).forEach(function(e) {
@@ -1067,7 +1085,6 @@ function expand_post(post, post_id) {
             var post_nb_likes = JSON.parse(this.responseText)['post_nb_likes'];
             var commented_post = JSON.parse(this.responseText)['post_commented'];
             var post_nb_comments = JSON.parse(this.responseText)['post_nb_comments'];
-
 
             var push_img = document.getElementById('img_display').src = post.childNodes[1].src;
             var push_title = document.getElementById('title_display').textContent = title_post;
