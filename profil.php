@@ -218,48 +218,50 @@
         //     exit();
         // }
         // $comments = mysqli_fetch_all($result);
-        echo'
-        <div id="black_opacity" class="hide_black_opacity">
-            <div id="close" onclick="close_box()"><img src="ressources/close.png"></div>
-            <div id="nav_fake"></div>
-            <div id="box_display">
-                <img id="img_display" src="data:image;base64,'.$img.'" alt="">
-                <div id="content_display">
-                    <div id="box_top">
-                        <div id="profil_display">
-                            <div id="profil_img_name_display">
-                                <img src="data:image;base64,'.$profil.'" alt="">
-                                <div id="name_display">'.$user[1].'</div>
+        if ($len > 0) {
+            echo'
+            <div id="black_opacity" class="hide_black_opacity">
+                <div id="close" onclick="close_box()"><img src="ressources/close.png"></div>
+                <div id="nav_fake"></div>
+                <div id="box_display">
+                    <img id="img_display" src="data:image;base64,'.$img.'" alt="">
+                    <div id="content_display">
+                        <div id="box_top">
+                            <div id="profil_display">
+                                <div id="profil_img_name_display">
+                                    <img src="data:image;base64,'.$profil.'" alt="">
+                                    <div id="name_display">'.$user[1].'</div>
+                                </div>
+                                <div id="delete_post_display"></div>
                             </div>
-                            <div id="delete_post_display"></div>
+                            <div id="title_display"></div>
+                            <div id="friends_display"></div>
                         </div>
-                        <div id="title_display"></div>
-                        <div id="friends_display"></div>
-                    </div>
-                    <div id="box_middle">
-                        <div id="all_comments"></div>
-                    </div>
-                    <div id="box_bottom">
-                        <div class="info_display">
-                            <div onclick="like_or_dislike_post(this)" class="like_display">
-                                <img src="" alt="like">
-                                <div class="number_likes"></div>
+                        <div id="box_middle">
+                            <div id="all_comments"></div>
+                        </div>
+                        <div id="box_bottom">
+                            <div class="info_display">
+                                <div onclick="like_or_dislike_post(this)" class="like_display">
+                                    <img src="" alt="like">
+                                    <div class="number_likes"></div>
+                                </div>
+                        
+                                <div class="comm_display">
+                                    <img class="comm_img" src="" alt="comment">
+                                    <div class="number_comments"></div>
+                                </div>    
                             </div>
-                    
-                            <div class="comm_display">
-                                <img class="comm_img" src="" alt="comment">
-                                <div class="number_comments"></div>
-                            </div>    
+                            <form class="form_comment" action="'; if ($_COOKIE['user_id']) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
+                                <input class="comment_answer" type="text" name="comment" placeholder="Add a comment...">
+                                <input class="post_id_form" type="hidden" name="post_id" value="">
+                                <input type="submit" class="submit_button">
+                            </form>
                         </div>
-                        <form class="form_comment" action="'; if ($_COOKIE['user_id']) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
-                            <input class="comment_answer" type="text" name="comment" placeholder="Add a comment...">
-                            <input class="post_id_form" type="hidden" name="post_id" value="">
-                            <input type="submit" class="submit_button">
-                        </form>
                     </div>
                 </div>
-            </div>
-        </div>';
+            </div>';
+        }
         ?>
     </body>
     <script type="text/javascript" src="file.js"></script>

@@ -1000,60 +1000,62 @@ if (location.pathname == '/profil.php')
     document.addEventListener('DOMContentLoaded', display_box);
 
     function display_box() {
-        document.getElementById('black_opacity').addEventListener('click', function() {
-            box_display_id = document.getElementById('box_display').dataset.id;
-            if (document.getElementById('all_comments')) {
-                var box_middle = document.getElementById('box_middle');
-                document.getElementById('all_comments').remove();
-                var new_all_comments = document.createElement('div');
-                new_all_comments.setAttribute('id', 'all_comments');
-                box_middle.appendChild(new_all_comments);
-            }
-            hover_box();
-            close_box();
-        });
-        
-        document.getElementById('box_display').addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-
-        if (findGetParameter('post_id')) {
-            var post;
-            var post_id = findGetParameter('post_id');
-            var blocks = document.getElementsByClassName('blocks');
-            Array.from(blocks).forEach(function(block) {
-                var box = block.childNodes;
-                console.log(box);
-                Array.from(box).forEach(function(elem) {
-                    if (elem.dataset) {
-                        if (elem.dataset.id == post_id) {
-                            post = elem;
-                            return;
-                        }
+        if (document.getElementById('black_opacity')) {
+            document.getElementById('black_opacity').addEventListener('click', function() {
+                    box_display_id = document.getElementById('box_display').dataset.id;
+                    if (document.getElementById('all_comments')) {
+                        var box_middle = document.getElementById('box_middle');
+                        document.getElementById('all_comments').remove();
+                        var new_all_comments = document.createElement('div');
+                        new_all_comments.setAttribute('id', 'all_comments');
+                        box_middle.appendChild(new_all_comments);
                     }
+                    hover_box();
+                    close_box();
+                });
+            
+            document.getElementById('box_display').addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            if (findGetParameter('post_id')) {
+                var post;
+                var post_id = findGetParameter('post_id');
+                var blocks = document.getElementsByClassName('blocks');
+                Array.from(blocks).forEach(function(block) {
+                    var box = block.childNodes;
+                    console.log(box);
+                    Array.from(box).forEach(function(elem) {
+                        if (elem.dataset) {
+                            if (elem.dataset.id == post_id) {
+                                post = elem;
+                                return;
+                            }
+                        }
+                    });
+                });
+                console.log(post);
+
+                expand_post(post, findGetParameter('post_id'));
+            }
+            
+            var post = document.getElementsByClassName('box');
+            Array.from(post).forEach(function(e) {
+                e.addEventListener('click', function(e) {
+                    var post = e.target;
+
+                    while (post.className != 'box')
+                        post = post.parentElement;
+                    
+                    console.log(post);
+                    var post_id = post.dataset.id;
+                    console.log(post_id);
+                    expand_post(post, post_id);
+                    if (findGetParameter('user_id') == getCookie('user_id'))
+                        delete_post_display_click(post_id);
                 });
             });
-            console.log(post);
-
-            expand_post(post, findGetParameter('post_id'));
         }
-        
-        var post = document.getElementsByClassName('box');
-        Array.from(post).forEach(function(e) {
-            e.addEventListener('click', function(e) {
-                var post = e.target;
-
-                while (post.className != 'box')
-                    post = post.parentElement;
-                
-                console.log(post);
-                var post_id = post.dataset.id;
-                console.log(post_id);
-                expand_post(post, post_id);
-                if (findGetParameter('user_id') == getCookie('user_id'))
-                    delete_post_display_click(post_id);
-            });
-        });
     }
 }
 
