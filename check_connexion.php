@@ -3,7 +3,6 @@
     unset($_SESSION['error']);
 
     include_once 'config/database.php';
-    include_once 'config/database_online.php';
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
     if (!empty($_SESSION['activate_username'])) {
