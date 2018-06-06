@@ -331,9 +331,11 @@ function like_or_dislike_post(elem) {
                         new_like_user.textContent = '@' + getCookie('username');
 
                         if (!liked_by.childNodes.length) {
-                            liked_by.textContent = 'Liked by ';
+                            var liked_by_text = document.createTextNode('Liked by ');
+                            var dot = document.createTextNode('.');
+                            liked_by.appendChild(liked_by_text);
                             liked_by.appendChild(new_like_user);
-                            liked_by.textContent += '.';
+                            liked_by.appendChild(dot);
                         }
                         else {
                             var comma = document.createTextNode(', ');
@@ -386,10 +388,11 @@ function like_or_dislike_post(elem) {
                     Array.from(liked_by.childNodes).forEach(function(elem) {
                         if (elem.textContent == '@' + getCookie('username')) {
                             elem.nextSibling.remove();
+                            if (elem.previousSibling.textContent == 'Liked by ')
+                                elem.previousSibling.remove();
                             elem.remove();
                             return;
                         }
-                        console.log(elem.textContent);
                     });
                     liked_by.style.display = 'none';
                  }
@@ -688,7 +691,10 @@ function display_comm() {
                         all_comments.style.overflow = 'auto';
                     }
                 }
-                if (all_comments.parentElement.childNodes[2].childNodes.length > 0)
+                console.log(liked_by.childNodes.length);
+                if (liked_by.style.display == 'block')
+                    liked_by.style.display = 'none';
+                else if (liked_by.childNodes.length > 0)
                     liked_by.style.display = 'block';
             }
             else if (all_comments.style.display == 'block') {
@@ -1735,6 +1741,7 @@ function submit_form_to_merge_img() {
         final_screen.src = final_canvas.toDataURL('image/png');
         console.log(final_screen);
         video_screen.remove();
+        anchor_sticker.remove();
         const buttons_picture = document.getElementById('buttons_picture');
         block.insertBefore(final_screen, buttons_picture);
         var img_screen = final_screen;

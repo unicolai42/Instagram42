@@ -7,8 +7,8 @@
                 <div id="texte">Instagram</div>
             </a>
             <div id="search_box">
-                <form id="search" action="recherche.php" method="GET">
-                    <input id="search_bar" type="search" placeholder="Search...">
+                <form id="search" action="search.php" method="POST">
+                    <input id="search_bar" type="search" placeholder="Search..." name="username">
                 </form>
             </div>
             <div id="boxright">

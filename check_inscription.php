@@ -9,6 +9,25 @@
     $_SESSION['mdp'] = $mdp;
     $_SESSION['username'] = $username;
 
+    if (strlen($mail) > 28) {
+        $_SESSION['error'] = 'mail too long';
+        unset($_SESSION['mail']);
+        header("Location: inscription.php");
+        exit();
+    }
+    else if (strlen($mdp) > 15) {
+        $_SESSION['error'] = 'pwd too long';
+        unset($_SESSION['mdp']);
+        header("Location: inscription.php");
+        exit();
+    }
+    else if (strlen($username) > 28) {
+        $_SESSION['error'] = 'username too long';
+        unset($_SESSION['username']);
+        header("Location: inscription.php");
+        exit();
+    }
+
     if (!$mail || preg_match("/.+@.+\.+./", $mail) == 0)
     {
         $_SESSION["error"] = "mail vide";
