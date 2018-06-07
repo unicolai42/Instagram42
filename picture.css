@@ -318,9 +318,10 @@
                     #text_sticker {
                         cursor: pointer;
                         text-align: center;
-                        margin-top: 4.3vh;
+                        margin-top: 2.3vh;
+                        margin-left: 1.1vh;
                         font-family: 'IBM Plex Sans Condensed';
                         font-weight: 200;
-                        width: 16vh;
+                        width: 10vh;
                         font-size: 2vh;
                     }

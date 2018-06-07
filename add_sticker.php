@@ -1,15 +1,18 @@
 <?PHP
+    session_start();
+
+    if (empty($_FILES['img'])) {
+        $_SESSION['error_img'] = 'true';
+        header("Location: picture.php");
+        exit();
+    }
+
     include_once 'config/database.php';
     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-    // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-    // if (mysqli_connect_errno()) {
-    //     printf("Échec de la connexion : %s\n", mysqli_connect_error());
-    //     exit();
-    // }
-    
-    if (empty($_FILES['img']) || ($_FILES['img']['type'] != 'image/png' && $_FILES['img']['type'] != 'image/jpg' && $_FILES['img']['type'] != 'image/jpeg')) {
+    if ($_FILES['img']['type'] != 'image/png' && $_FILES['img']['type'] != 'image/jpg' && $_FILES['img']['type'] != 'image/jpeg') {
         $_SESSION['error_img'] = 'true';
+        header("Location: picture.php");
         exit();
     }
     else {
@@ -24,17 +27,6 @@
         $sth->bindParam(':path', $path);
         $sth->execute();
 
-        // $sql = "INSERT INTO stickers (name, img) VALUES ('".$name."', '".$path."');";
-        // $pdo->exec($sql);
-
-        // $query = "INSERT INTO stickers (name, img) VALUES ('".$name."', '".$path."');";
-        // $result = mysqli_query($connexion, $query);
-        // if (!$result)
-        // {
-        //     echo "shit query id";
-        //     exit();
-        // }
-        unset($_SESSION['error_img']);
         header("Location: picture.php");
     }
 ?>
