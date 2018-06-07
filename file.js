@@ -1055,7 +1055,10 @@ if (location.pathname == '/profil.php')
                         }
                     });
                 });
-                console.log(post);
+                if (!post) {
+                    document.location.href="/";
+                    return ;
+                }
 
                 expand_post(post, findGetParameter('post_id'));
             }
@@ -1068,9 +1071,7 @@ if (location.pathname == '/profil.php')
                     while (post.className != 'box')
                         post = post.parentElement;
                     
-                    console.log(post);
                     var post_id = post.dataset.id;
-                    console.log(post_id);
                     expand_post(post, post_id);
                     if (findGetParameter('user_id') == getCookie('user_id'))
                         delete_post_display_click(post_id);
@@ -1108,6 +1109,7 @@ function expand_post(post, post_id) {
             var post_nb_likes = JSON.parse(this.responseText)['post_nb_likes'];
             var commented_post = JSON.parse(this.responseText)['post_commented'];
             var post_nb_comments = JSON.parse(this.responseText)['post_nb_comments'];
+
 
             var push_img = document.getElementById('img_display').src = post.childNodes[1].src;
             var push_title = document.getElementById('title_display').textContent = title_post;

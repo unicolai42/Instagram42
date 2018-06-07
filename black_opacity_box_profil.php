@@ -2,13 +2,6 @@
    include_once 'config/database.php';
    $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-    // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-    // if (mysqli_connect_errno())
-    // {
-    //     echo "shit connexion";
-    //     exit();
-    // }
-
     if (empty($_POST['post_id'])) {
         echo 'post id empty';
         exit();
@@ -20,19 +13,6 @@
     $sth->execute();
     $post = $sth->fetch();
 
-    // $sql = "SELECT * FROM posts WHERE id = ".$_POST['post_id'].";";
-    // $req = $pdo->query($sql);
-    // $post = $req->fetch();
-    // $req->closeCursor();
-
-    // $query = "SELECT * FROM posts WHERE id = ".$_POST['post_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $post = mysqli_fetch_row($result);
 
     $sql = "SELECT * FROM comments WHERE post_id = :post_id ORDER BY date DESC;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
@@ -40,19 +20,6 @@
     $sth->execute();
     $comments = $sth->fetchAll();
 
-    // $sql = "SELECT * FROM comments WHERE post_id = ".$_POST['post_id']." ORDER BY date DESC;";
-    // $req = $pdo->query($sql);
-    // $comments = $req->fetchAll();
-    // $req->closeCursor();
-
-    // $query = "SELECT * FROM comments WHERE post_id = ".$_POST['post_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $comments = mysqli_fetch_all($result);
 
     if (!empty($_COOKIE['user_id']))
     {
@@ -63,40 +30,12 @@
         $sth->execute();
         $liked = $sth->fetch();
 
-        // $sql = "SELECT * FROM likes WHERE user_id = ".$_COOKIE['user_id']." && post_id = ".$_POST['post_id'].";";
-        // $req = $pdo->query($sql);
-        // $liked = $req->fetch();
-        // $req->closeCursor();
-
-        // $query = "SELECT * FROM likes WHERE user_id = ".$_COOKIE['user_id']." && post_id = ".$_POST['post_id'].";";
-        // $result = mysqli_query($connexion, $query);
-        // if (!$result)
-        // {
-        //     echo "error query";
-        //     exit();
-        // }
-        // $liked = mysqli_fetch_row($result);
-
         $sql = "SELECT * FROM comments WHERE user_id = :user_id && post_id = :post_id;";
         $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
         $sth->bindParam(':user_id', $_COOKIE['user_id']);
         $sth->bindParam(':post_id', $_POST['post_id']);
         $sth->execute();
         $commented = $sth->fetch();
-
-        // $sql = "SELECT * FROM comments WHERE user_id = ".$_COOKIE['user_id']." && post_id = ".$_POST['post_id'].";";
-        // $req = $pdo->query($sql);
-        // $commented = $req->fetch();
-        // $req->closeCursor();
-
-        // $query = "SELECT * FROM comments WHERE user_id = ".$_COOKIE['user_id']." && post_id = ".$_POST['post_id'].";";
-        // $result = mysqli_query($connexion, $query);
-        // if (!$result)
-        // {
-        //     echo "error query";
-        //     exit();
-        // }
-        // $commented = mysqli_fetch_row($result);
     }
     else
     {
@@ -110,39 +49,11 @@
     $sth->execute();
     $nb_likes = $sth->fetch();
     
-    // $sql = "SELECT COUNT(*) FROM likes WHERE post_id = ".$_POST['post_id'].";";
-    // $req = $pdo->query($sql);
-    // $nb_likes = $req->fetch();
-    // $req->closeCursor();
-
-    // $query = "SELECT COUNT(*) FROM likes WHERE post_id = ".$_POST['post_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $nb_likes = mysqli_fetch_row($result);
-
     $sql = "SELECT COUNT(*) FROM comments WHERE post_id = :post_id;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $sth->bindParam(':post_id', $_POST['post_id']);
     $sth->execute();
     $nb_comments = $sth->fetch();
-
-    // $sql = "SELECT COUNT(*) FROM comments WHERE post_id = ".$_POST['post_id'].";";
-    // $req = $pdo->query($sql);
-    // $nb_comments = $req->fetch();
-    // $req->closeCursor();
-
-    // $query = "SELECT COUNT(*) FROM comments WHERE post_id = ".$_POST['post_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $nb_comments = mysqli_fetch_row($result);
     
     $sql = "SELECT * FROM users;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -154,15 +65,7 @@
     $users = $req->fetchAll();
     $req->closeCursor();
 
-    // $query = "SELECT * FROM users;";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $users = mysqli_fetch_all($result);
-
+    
     $data['users'] = $users;
     $data['post_title'] = $post[4];
     $data['post_friends'] = $post[3];
