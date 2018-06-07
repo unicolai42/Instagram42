@@ -2210,7 +2210,7 @@ function picture() {
                 if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
                     console.log("no camera suported !")
                 } else {
-                    navigator.mediaDevices.getUserMedia({video: { width: { exact: 600 }, height: { exact: 600 } }}).then(successCallback).catch(errorCallback);
+                    navigator.mediaDevices.getUserMedia({video: { width: { ideal: 600 }, height: { ideal: 600 } }}).then(successCallback).catch(errorCallback);
                 }
             }
             else {
