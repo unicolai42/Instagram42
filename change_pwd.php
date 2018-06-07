@@ -10,10 +10,10 @@
     $sth->execute();
     $user = $sth->fetch();
 
-    // $sql = "SELECT * FROM users WHERE username = '".$_GET['username']."'";
-    // $req = $pdo->query($sql);
-    // $user = $req->fetch();
-    // $req->closeCursor();
+    if (empty($user) || $user[6] != $_GET['cle']) {
+        header("Location: connexion.php");
+        exit();
+    }
 
     unset($_SESSION['username']);
     setcookie('user_id', $user[0]);
