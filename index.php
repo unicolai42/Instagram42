@@ -77,7 +77,7 @@
                             echo '<a href="profil.php?user_id='.$user[0].'" class="img_login"><img src="data:image;base64,'.$profil.'" alt=""></a>';
                             echo '<a href="profil.php?user_id='.$user[0].'" class="text_login">'.$user[1].'</a>';
                         echo '</div>';
-                        if (!empty($_COOKIE['username']) == $user[1]) echo '<div class="delete_post" onclick="delete_post_index(this)"><img src="ressources/delete.png" alt="delete"></div>';
+                        if (!empty($_COOKIE['username']) && $_COOKIE['username'] == $user[1]) echo '<div class="delete_post" onclick="delete_post_index(this)"><img src="ressources/delete.png" alt="delete"></div>';
                     echo '</div>';
                     echo '<div class="photo"><img src="data:image;base64,'.$img.'"></div>';
                     echo '<div class="legend">';

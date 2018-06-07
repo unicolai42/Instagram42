@@ -18,9 +18,12 @@
         <?PHP include('header.php');?>
         <div id='block'>
             <div id='no_picture'>
-                <img id='no_picture_img' src="ressources/no_picture.png" alt="">
-                <div id='no_picture_indispo'>Webcam unavailable</div>
-                <div id='no_picture_import'>Click to import a picture</div>
+                <label id='label_no_picture' for="input_no_picture"></label>
+                    <img id='no_picture_img' src="ressources/no_picture.png" alt="">
+                    <div id='no_picture_indispo'>Webcam unavailable</div>
+                    <div id='no_picture_import'>Click to import a picture</div>
+                </label>
+                <input id='input_no_picture' name='img' type='file' class='input-file'>
             </div>
             <div id='caroussel'>
                 <div class='arrows'><img id='arrow_left' src='ressources/arrow_left.png'></div>
