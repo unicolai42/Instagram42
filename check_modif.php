@@ -11,45 +11,49 @@
     //     exit();
     // }
 
+    if (strlen($_POST['username']) > 28) {
+        $_SESSION['modif'] = 'error';
+        header("Location: modif.php");
+        exit();
+    }
+
     $sql = "UPDATE users SET username = :username WHERE id = :user_id;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->bindParam(':username', $_POST['username']);
     $sth->bindParam(':user_id', $_COOKIE['user_id']);
     $sth->execute();
 
-    // $sql = "UPDATE users SET username = '".$_POST['username']."' WHERE id = ".$_COOKIE['user_id'].";";
-    // $pdo->exec($sql);
-
-    // $query = "UPDATE users SET username = '".$_POST['username']."' WHERE id = ".$_COOKIE['user_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-
     unset($_COOKIE['username']);
     setcookie('username', $_POST['username']);
+
+
+
+
+    if (strlen($_POST['mail']) > 28) {
+        $_SESSION['modif'] = 'error';
+        header("Location: modif.php");
+        exit();
+    }
+
+    $sql = "UPDATE users SET mail = :mail WHERE id = :user_id;";
+    $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
+    $sth->bindParam(':mail', $_POST['mail']);
+    $sth->bindParam(':user_id', $_COOKIE['user_id']);
+    $sth->execute();
+
+
+    
+    if (strlen($_POST['newmdp1']) > 15) {
+        unset($_SESSION['mdp']);
+        header("Location: inscription.php");
+        exit();
+    }
 
     $sql = "SELECT mdp FROM users WHERE id = :user_id;";
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->bindParam(':user_id', $_COOKIE['user_id']);
     $sth->execute();
     $mdp = $sth->fetch();
-
-    // $sql = "SELECT mdp FROM users WHERE id = ".$_COOKIE['user_id'].";";
-    // $req = $pdo->query($sql);
-    // $mdp = $req->fetch();
-    // $req->closeCursor();
-    
-    // $query = "SELECT mdp FROM users WHERE id = ".$_COOKIE['user_id'].";";
-    // $result = mysqli_query($connexion, $query);
-    // if (!$result)
-    // {
-    //     echo "error query";
-    //     exit();
-    // }
-    // $mdp = mysqli_fetch_row($result);
 
     if ($mdp[0] != hash('whirlpool', $_POST['oldmdp']) && ($_POST['newmdp1'] || $_POST['newmdp2']) && !$_SESSION['change_pwd'])
     {
@@ -97,11 +101,6 @@
         //     exit();
         // }
     }
-    $sql = "UPDATE users SET mail = :mail WHERE id = :user_id;";
-    $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
-    $sth->bindParam(':mail', $_POST['mail']);
-    $sth->bindParam(':user_id', $_COOKIE['user_id']);
-    $sth->execute();
 
     // $sql = "UPDATE users SET mail = '".$_POST['mail']."' WHERE id = ".$_COOKIE['user_id'].";";
     // $pdo->exec($sql);

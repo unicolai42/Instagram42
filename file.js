@@ -499,12 +499,12 @@ function create_new_comment_from_scratch(e, dataset_id, all_comments) {
                 comment_content.appendChild(text);
                 text.setAttribute('class', 'text');
             var delete_comment = document.createElement("div");
-            comments.appendChild(delete_comment);
             delete_comment.setAttribute('onclick', 'delete_comment(this)');
             delete_comment.setAttribute('class', 'delete_comment');
                 var img = document.createElement('img');
                 delete_comment.appendChild(img);
                 img.src = 'ressources/delete.png';
+            comments.appendChild(delete_comment);
 }
 
 function display_new_comment(e, dataset_id) {
@@ -538,10 +538,13 @@ function display_new_comment(e, dataset_id) {
 
         all_comments.insertBefore(new_comment, first_comment);
         new_comment.dataset.id = dataset_id;
-        
-        if (!first_comment.childNodes[1])
+        console.log(first_comment.childNodes[1]);
+        if (!first_comment.childNodes[1] && location.pathname != '/profil.php' || !first_comment.childNodes[1].className)
         {
-            var delete_comment = document.createElement("div");
+            if (location.pathname != '/profil.php')
+                var delete_comment = document.createElement("div");
+            else
+                var delete_comment = new_comment.childNodes[1];
             new_comment.appendChild(delete_comment);
             delete_comment.setAttribute('onclick', 'delete_comment(this)');
             delete_comment.setAttribute('class', 'delete_comment');
@@ -551,7 +554,10 @@ function display_new_comment(e, dataset_id) {
         }
     }
     if (location.pathname != '/profil.php') {
-        var legend = e.path[2];
+        var legend = e.target;
+        while (legend.className != 'legend')
+            legend = legend.parentElement;
+
         var liked_by = legend.childNodes[2];
         var all_comments = legend.childNodes[3];
 
@@ -588,18 +594,29 @@ function new_comment(e) {
         var request = new XMLHttpRequest();
         request.open("POST", "check_comment.php", true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send('comment=' + e.target.value + '&post_id=' + e.path[1][1].value);
+
+        var post = e.target;
+        while (post.className != 'post' && post.id != 'box_display')
+            post = post.parentElement;
+        
+        request.send('comment=' + e.target.value + '&post_id=' + post.dataset.id);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200)
             {
                 var dataset_id = JSON.parse(this.responseText)['dataset_id'];
                 // console.log(dataset_id);
                 var nb_comments_by_user = JSON.parse(this.responseText)['nb_comments_by_user'];
+                
+                var chiffre = post.getElementsByClassName('chiffre')[0];
+                    var like_chiffre = post.getElementsByClassName('like_chiffre')[0];
+                    var comm_chiffre = post.getElementsByClassName('comm_chiffre')[0];
+                var icon = post.getElementsByClassName('icon')[0];
+                    var like_icon = post.getElementsByClassName('like_icon')[0];
+                    var comm_icon = post.getElementsByClassName('comm_icon')[0];
 
                 if (location.pathname == '/profil.php')
                 {
                     var img_comm_display = document.getElementsByClassName('comm_display')[0].childNodes[1];
-                    console.log(img_comm_display);
                     if (img_comm_display.className == 'comm_img')
                     {
                         img_comm_display.className = 'comm_color_img';
@@ -610,13 +627,11 @@ function new_comment(e) {
                     document.getElementsByClassName('number_comments')[0].textContent = new_nb_comments; 
                     display_new_comment(e, dataset_id);
                 }
-                else if (!e.path[2].childNodes[0].childNodes[0].childNodes[0])
+                else if (!like_chiffre && !comm_chiffre)
                 {
-                    // console.log(e.path[2].childNodes[0].childNodes[0]);
                     var div_comm_chiffre = document.createElement("div");
-                    var div_chiffre = e.path[2].childNodes[0].childNodes[0];
-                    div_chiffre.appendChild(div_comm_chiffre);
-                    div_chiffre.childNodes[0].setAttribute('class', 'comm_chiffre');
+                    chiffre.appendChild(div_comm_chiffre);
+                    chiffre.childNodes[0].setAttribute('class', 'comm_chiffre');
                     var div_comm_number = document.createElement("div");
                     div_comm_chiffre.appendChild(div_comm_number);
                     div_comm_chiffre.childNodes[0].setAttribute('class', 'number_comments');
@@ -625,24 +640,23 @@ function new_comment(e) {
                     div_comm_chiffre.appendChild(div_comm_text);
                     div_comm_chiffre.childNodes[1].setAttribute('class', 'text_comments');
                     div_comm_text.textContent = "comments";
-                    e.path[2].childNodes[0].childNodes[1].childNodes[1].childNodes[0].src = "ressources/comm_color.png";
+                    comm_icon.childNodes[0].src = "ressources/comm_color.png";
                     display_new_comment(e, dataset_id);
                 }
-                else if (e.path[2].childNodes[0].childNodes[0].childNodes[0].className == 'comm_chiffre')
+                else if (!like_chiffre && comm_chiffre)
                 {
-                    var number_comments = e.path[2].childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent;
+                    var number_comments = comm_chiffre.childNodes[0].textContent;
                     var new_number_comments = parseInt(number_comments) + 1;
-                    e.path[2].childNodes[0].childNodes[0].childNodes[0].childNodes[0].textContent = new_number_comments;
+                    comm_chiffre.childNodes[0].textContent = new_number_comments;
                     if (nb_comments_by_user == 1)
-                        e.path[2].childNodes[0].childNodes[1].childNodes[1].childNodes[0].src = "ressources/comm_color.png";
+                        comm_icon.childNodes[0].src = "ressources/comm_color.png";
                     display_new_comment(e, dataset_id);
                 }
-                else if (!e.path[2].childNodes[0].childNodes[0].childNodes[1])
+                else if (like_chiffre && !comm_chiffre)
                 {
                     var div_comm_chiffre = document.createElement("div");
-                    var div_chiffre = e.path[2].childNodes[0].childNodes[0];
-                    div_chiffre.appendChild(div_comm_chiffre);
-                    div_chiffre.childNodes[1].setAttribute('class', 'comm_chiffre');
+                    chiffre.appendChild(div_comm_chiffre);
+                    chiffre.childNodes[1].setAttribute('class', 'comm_chiffre');
                     var div_comm_number = document.createElement("div");
                     div_comm_chiffre.appendChild(div_comm_number);
                     div_comm_chiffre.childNodes[0].setAttribute('class', 'number_comments');
@@ -651,16 +665,16 @@ function new_comment(e) {
                     div_comm_chiffre.appendChild(div_comm_text);
                     div_comm_chiffre.childNodes[1].setAttribute('class', 'text_comments');
                     div_comm_text.textContent = "comments";
-                    e.path[2].childNodes[0].childNodes[1].childNodes[1].childNodes[0].src = "ressources/comm_color.png";
+                    comm_icon.childNodes[0].src = "ressources/comm_color.png";
                     display_new_comment(e, dataset_id);
                 }
-                else if (e.path[2].childNodes[0].childNodes[0].childNodes[1].className == 'comm_chiffre')
+                else if (like_chiffre && comm_chiffre)
                 {
-                    var number_comments = e.path[2].childNodes[0].childNodes[0].childNodes[1].childNodes[0].textContent;
+                    var number_comments = comm_chiffre.childNodes[0].textContent;
                     var new_number_comments = parseInt(number_comments) + 1;
-                    e.path[2].childNodes[0].childNodes[0].childNodes[1].childNodes[0].textContent = new_number_comments;
+                    comm_chiffre.childNodes[0].textContent = new_number_comments;
                     if (nb_comments_by_user == 1)
-                    e.path[2].childNodes[0].childNodes[1].childNodes[1].childNodes[0].src = "ressources/comm_color.png";
+                    comm_icon.childNodes[0].src = "ressources/comm_color.png";
                     display_new_comment(e, dataset_id);
                 }
                 e.target.value = '';
@@ -676,7 +690,7 @@ function display_comm() {
     var comm_icon = document.getElementsByClassName('comm_icon');
     Array.from(comm_icon).forEach(function(element) {
         element.addEventListener('click', function(e) {
-            var legend = e.path[0];
+            var legend = e.target;
             while (legend.className != 'legend')
                 legend = legend.parentElement;
 
@@ -710,7 +724,7 @@ function display_comm() {
     var chiffre = document.getElementsByClassName('chiffre');
     Array.from(chiffre).forEach(function(element) {
         element.addEventListener('click', function(e) {
-            var legend = e.path[0];
+            var legend = e.target;
             while (legend.className != 'legend')
                 legend = legend.parentElement;
 
@@ -839,7 +853,8 @@ function search() {
                 });
                 if (result.length > 0)
                 {
-                    var search_box = e.path[2];
+                    var search_box = document.getElementById('search_box');
+
                     var box_users = document.createElement('div');
                     search_box.appendChild(box_users);
                     box_users.setAttribute('id', 'box_users');
@@ -2195,7 +2210,7 @@ function picture() {
                 if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
                     console.log("no camera suported !")
                 } else {
-                    navigator.mediaDevices.getUserMedia({video: {width: 600, height: 600}}).then(successCallback).catch(errorCallback);
+                    navigator.mediaDevices.getUserMedia({video: { width: { exact: 600 }, height: { exact: 600 } }}).then(successCallback).catch(errorCallback);
                 }
             }
             else {

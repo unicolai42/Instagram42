@@ -1,5 +1,10 @@
 <?PHP
     session_start();
+    
+    if (empty($_COOKIE['user_id'])) {
+        header("Location: connexion.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html>

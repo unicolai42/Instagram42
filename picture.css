@@ -19,7 +19,7 @@
         cursor: pointer;
     }
         #no_picture_img {
-            margin: 13vh auto 0 auto;
+            margin: 14vh auto 0 auto;
             width: 20vh;
         }
         #no_picture_indispo {
@@ -233,7 +233,7 @@
             font-family: 'IBM Plex Sans Condensed';
             font-weight: 300;
             font-style: italic;
-            font-size: 2.2vh;
+            font-size: 2.1vh;
             color: red;
         }
 

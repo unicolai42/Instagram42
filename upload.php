@@ -1,5 +1,10 @@
 <?PHP
     session_start();
+
+    if (empty($_POST['img_screen'])) {
+        header("Location: /");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html>
