@@ -52,57 +52,35 @@ function profil_picture_click(e) {
 
 function getAllUrlParams(url) {
 
-    // get query string from url (optional) or window
     var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
-  
-    // we'll store the parameters here
     var obj = {};
-  
-    // if query string exists
+
     if (queryString) {
-  
-      // stuff after # is not part of query string, so get rid of it
       queryString = queryString.split('#')[0];
-  
-      // split our query string into its component parts
       var arr = queryString.split('&');
   
       for (var i=0; i<arr.length; i++) {
-        // separate the keys and the values
         var a = arr[i].split('=');
-  
-        // in case params look like: list[]=thing1&list[]=thing2
         var paramNum = undefined;
         var paramName = a[0].replace(/\[\d*\]/, function(v) {
           paramNum = v.slice(1,-1);
           return '';
         });
-  
-        // set parameter value (use 'true' if empty)
         var paramValue = typeof(a[1])==='undefined' ? true : a[1];
-  
-        // (optional) keep case consistent
         paramName = paramName.toLowerCase();
         paramValue = paramValue.toLowerCase();
-  
-        // if parameter name already exists
+
         if (obj[paramName]) {
-          // convert value to array (if still string)
           if (typeof obj[paramName] === 'string') {
             obj[paramName] = [obj[paramName]];
           }
-          // if no array index number specified...
           if (typeof paramNum === 'undefined') {
-            // put the value on the end of the array
             obj[paramName].push(paramValue);
           }
-          // if array index number specified...
           else {
-            // put the value at that index number
             obj[paramName][paramNum] = paramValue;
           }
         }
-        // if param name doesn't exist yet, set it
         else {
           obj[paramName] = paramValue;
         }
@@ -125,7 +103,6 @@ function hover_box() {
             var nb_comments_posts = JSON.parse(this.responseText)['comments'];
             var nb_likes_posts = JSON.parse(this.responseText)['likes'];
             const box = document.getElementsByClassName('box');
-            console.log(nb_comments_posts);
 
             Array.from(box).forEach(function(element) {
                 element.addEventListener('mouseenter', function(e) {
@@ -213,7 +190,6 @@ if (location.pathname == '/profil.php') {
         var profil_picture_others = document.getElementById('profil_picture_others');
         if (profil_picture_others) {
                 var profil_picture_others_img = document.getElementById('profil_picture_others').childNodes[0];
-                console.log(profil_picture_others_img);
 
             if (profil_picture_others_img.naturalWidth > profil_picture_others_img.naturalHeight)
                 profil_picture_others_img.setAttribute('id', 'profil_picture_others_width_img');
@@ -236,8 +212,6 @@ function delete_elem() {
 }
 
 function delete_post_index(elem) {
-    // console.log(elem.parentElement.parentElement.dataset.id);
-    console.log(elem.parentElement.parentElement.dataset.id);
     var request = new XMLHttpRequest();
     request.open('POST', 'delete_post.php', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -302,15 +276,14 @@ function like_or_dislike_post(elem) {
                     {
                         var div_like_chiffre = document.createElement("div");
                         var div_chiffre = elem.parentElement.parentElement.childNodes[0];
-                        // console.log(div_chiffre.childNodes);
+
                         if (!div_chiffre.childNodes[0])
                             child = undefined;
                         else if (div_chiffre.childNodes[0].className == 'comm_chiffre')
                             child = div_chiffre.childNodes[0];
-                        // console.log(child);
+
                         div_chiffre.insertBefore(div_like_chiffre, child);
                         div_chiffre.childNodes[0].setAttribute('class', 'like_chiffre');
-                        // console.log(div_chiffre.childNodes);
                         div_chiffre.childNodes[0].textContent = "1 likes";
                     }
                     else if (elem.parentElement.parentElement.childNodes[0].childNodes[0].className == 'like_chiffre')
@@ -323,7 +296,6 @@ function like_or_dislike_post(elem) {
                         while (legend.className != 'legend')
                             legend = legend.parentElement;
                         var liked_by = legend.childNodes[2];
-                        console.log(liked_by.childNodes[1]);
 
                         var new_like_user = document.createElement('a');
                         new_like_user.setAttribute('class', 'liked_by');
@@ -339,12 +311,9 @@ function like_or_dislike_post(elem) {
                         }
                         else {
                             var comma = document.createTextNode(', ');
-                            console.log(liked_by.childNodes[1]);
                             liked_by.insertBefore(comma, liked_by.childNodes[1]);
                             liked_by.insertBefore(new_like_user, comma);
                         }
-                        console.log(liked_by.childNodes.length);
-
                         liked_by.style.display = 'block';
                 }
         
@@ -405,9 +374,7 @@ function delete_comment(elem){
     var request = new XMLHttpRequest();
     request.open('POST', 'delete_comment.php', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    console.log(elem.parentElement.dataset.id);
     request.send('comment_id=' + elem.parentElement.dataset.id);
-    console.log(elem.parentElement.dataset.id);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200)
         {
@@ -415,7 +382,6 @@ function delete_comment(elem){
             var posts = document.getElementsByClassName('post');
             var post_id = JSON.parse(this.responseText)['post_id'];
             var nb_user_comments = JSON.parse(this.responseText)['user_comments'];
-            // console.log(document.getElementsByClassName('comm_color_img'));
             var i = -1;
             while (++i < posts.length)
                 if (posts[i].dataset.id == post_id)
@@ -423,7 +389,6 @@ function delete_comment(elem){
             if (location.pathname == '/profil.php')
             {
                 document.getElementsByClassName('number_comments')[0].textContent -= 1;
-                console.log(nb_user_comments);
                 if (nb_user_comments == 0 && document.getElementsByClassName('comm_color_img')[0])
                 {
                     document.getElementsByClassName('comm_color_img')[0].src = 'ressources/comm.png';
@@ -432,7 +397,6 @@ function delete_comment(elem){
 
                 return;
             }
-            console.log('hjk');
 
             var like_comment = post.childNodes[2].childNodes[0];
             if (like_comment.childNodes[0].childNodes[0].className == 'comm_chiffre')
@@ -446,7 +410,6 @@ function delete_comment(elem){
                 else
                     var comm_chiffre = like_comment.childNodes[0].childNodes[1];
                 comm_chiffre.remove();
-                // console.log(like_comment);
             }
             else if (number_comments > 1)
             {
@@ -460,7 +423,6 @@ function delete_comment(elem){
             {
                 var comm_icon_img =  like_comment.childNodes[1].childNodes[1].childNodes[0];
                 comm_icon_img.src = 'ressources/comm.png';
-                console.log(comm_icon_img);
             }
         }
     }
@@ -515,8 +477,6 @@ function display_new_comment(e, dataset_id) {
         
         var all_comments = document.getElementById('all_comments');
         var nb_comments = document.getElementsByClassName('comments').length;
-        console.log(nb_comments);
-        console.log(all_comments);
     }
     else {
         while (!post.className || post.className != 'post')
@@ -538,7 +498,6 @@ function display_new_comment(e, dataset_id) {
 
         all_comments.insertBefore(new_comment, first_comment);
         new_comment.dataset.id = dataset_id;
-        console.log(first_comment.childNodes[1]);
         if (!first_comment.childNodes[1] && location.pathname != '/profil.php' || !first_comment.childNodes[1].className)
         {
             if (location.pathname != '/profil.php')
@@ -577,7 +536,6 @@ function display_new_comment(e, dataset_id) {
 function new_comment(e) {
     var key = e.which || e.keyCode;
     if (key === 13) {
-        // console.log(location.pathname);
         e.preventDefault();
         if (e.target.value == '')
         {
@@ -603,7 +561,6 @@ function new_comment(e) {
             if (request.readyState == 4 && request.status == 200)
             {
                 var dataset_id = JSON.parse(this.responseText)['dataset_id'];
-                // console.log(dataset_id);
                 var nb_comments_by_user = JSON.parse(this.responseText)['nb_comments_by_user'];
                 
                 var chiffre = post.getElementsByClassName('chiffre')[0];
@@ -684,8 +641,7 @@ function new_comment(e) {
 
 document.addEventListener('DOMContentLoaded', display_comm);
 
-function display_comm() {
-    // console.log(document.getElementsByClassName('comm_icon'));    
+function display_comm() {   
     var comm_icon = document.getElementsByClassName('comm_icon');
     Array.from(comm_icon).forEach(function(element) {
         element.addEventListener('click', function(e) {
@@ -704,7 +660,6 @@ function display_comm() {
                         all_comments.style.overflow = 'auto';
                     }
                 }
-                console.log(liked_by.childNodes.length);
                 if (liked_by.style.display == 'block')
                     liked_by.style.display = 'none';
                 else if (liked_by.childNodes.length > 0)
@@ -716,7 +671,6 @@ function display_comm() {
                 all_comments.style.overflow = '';
                 liked_by.style.display = 'none';
             }
-                // ca marche pas quand on post un new comment. il se rajoute pas a la liste A FAIRE CA
         });
     });
 
@@ -747,7 +701,6 @@ function display_comm() {
                 all_comments.style.overflow = '';
                 liked_by.style.display = 'none';
             }
-                // ca marche pas quand on post un new comment. il se rajoute pas a la liste A FAIRE CA
         });
     });
 }
@@ -879,7 +832,6 @@ function search() {
 
 function push_friends(friends_post, users) {
     var array_friends = friends_post.split(' ');
-    console.log(friends_post);
     var push_friends = 'with ';
     Array.from(array_friends).forEach(function(friend) {
         Array.from(users).forEach(function(user){
@@ -892,16 +844,9 @@ function push_friends(friends_post, users) {
             }
         });
     });
-    // console.log(push_friends);
     document.getElementById('friends_display').innerHTML = push_friends;
 }
 
-// function find_username_with_user_id(user_id, users) {
-//     var i = -1;
-//     while (++i < users.length)
-//         if (users[i][0] == user_id)
-//             return users[i][1];
-// }
 
 function find_username_with_user_id(user_id, users) {
     var result;
@@ -915,7 +860,6 @@ function find_username_with_user_id(user_id, users) {
 function push_comments(comments_post, users) {
     var all_comments = document.getElementById('all_comments');
     Array.from(comments_post).forEach(function(comment) {
-        // console.log(comment);
         var comments = document.createElement('div');
         all_comments.appendChild(comments);
         comments.setAttribute('class', 'comments');
@@ -955,7 +899,6 @@ function push_liked(liked_post)
     else
     {
         like_display = document.getElementsByClassName('like_display')[0];
-        console.log(like_display);
         like_display.childNodes[1].setAttribute('class', 'like_red');
         document.getElementsByClassName('like_red')[0].src = 'ressources/like_red.png';
     }
@@ -972,7 +915,6 @@ function push_commented(commented_post)
     else
     {
         comm_display = document.getElementsByClassName('comm_display')[0];
-        console.log(comm_display.childNodes);
         comm_display.childNodes[1].setAttribute('class', 'comm_color_img');
         document.getElementsByClassName('comm_color_img')[0].src = 'ressources/comm_color.png';
     }
@@ -1044,7 +986,6 @@ if (location.pathname == '/profil.php')
                 var blocks = document.getElementsByClassName('blocks');
                 Array.from(blocks).forEach(function(block) {
                     var box = block.childNodes;
-                    console.log(box);
                     Array.from(box).forEach(function(elem) {
                         if (elem.dataset) {
                             if (elem.dataset.id == post_id) {
@@ -1081,11 +1022,9 @@ if (location.pathname == '/profil.php')
 }
 
 function expand_post(post, post_id) {
-    console.log(post_id);
     var request = new XMLHttpRequest();
     request.open('POST', 'black_opacity_box_profil.php', true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // console.log(post_id);
     request.send('post_id=' + post_id);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200)
@@ -1118,9 +1057,7 @@ function expand_post(post, post_id) {
             push_liked(liked_post);
             var push_nb_likes = document.getElementsByClassName('number_likes')[0].textContent = post_nb_likes;
             push_commented(commented_post);
-            // console.log(document.getElementsByClassName('number_comments'));
             var push_nb_comments = document.getElementsByClassName('number_comments')[0].textContent = post_nb_comments;
-            console.log(document.getElementsByClassName('post_id_form')[0]);
             var push_post_id_to_form = document.getElementsByClassName('post_id_form')[0].value = post_id;
         }
     }
@@ -1240,7 +1177,6 @@ if (location.pathname == '/upload.php')
                 if (document.getElementById('search_tag')) {
                     document.getElementById('search_tag').addEventListener('keyup', function(e) {
                         var key = e.which || e.keyCode;
-                        console.log(e.srcElement.nextSibling);
                         var last_input = e.srcElement.value.substr(e.srcElement.value.length - 1);
                     
                         if (last_input == '@')
@@ -1256,25 +1192,17 @@ if (location.pathname == '/upload.php')
                         else if (key == 8)
                             tag_input = tag_input.substr(0, tag_input.length - 1);
 
-                        console.log(tag_input);
-                        console.log(last_input);
-
-                        console.log(tag);
-
                         if (tag == 1 && last_input != '@')
                         {
                             if (!tag_input)
                                 tag_input = last_input;
                             else if (key != 8)
                                 tag_input += last_input;
-                            console.log(tag_input); 
                             var first_child = e.srcElement;
                             var box_users = document.getElementsByClassName('box_users');
-                            console.log(box_users);
                             if (box_users[0])
                                 box_users[0].remove();
                             var box_users = insert_elem_after_his_brother(first_child, 'box_users', 'div');
-                            console.log(box_users);
                             var result = match_search_input_into_tab(tag_input, users);
                             create_box_when_elem_match(result, box_users, users, 'div');
                         }
@@ -1282,11 +1210,9 @@ if (location.pathname == '/upload.php')
                         {
                             var first_child = e.srcElement;
                             var box_users = document.getElementsByClassName('box_users');
-                            console.log(box_users);
                             if (box_users[0])
                                 box_users[0].remove();
                             var box_users = insert_elem_after_his_brother(first_child, 'box_users', 'div');
-                            console.log(box_users);
                             var result = all_users_name(users);
                             create_box_when_elem_match(result, box_users, users, 'div');
                         }
@@ -1342,8 +1268,6 @@ function push_content_notif(tab_notif, notif, users, sender) {
 
 function click_notif(notif) {
     notif.addEventListener('click', function(e) {
-        // e.preventDefault();
-        console.log(notif.dataset.id);
         var request = new XMLHttpRequest();
         request.open('POST', 'push_notif_as_read.php', true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -1401,10 +1325,6 @@ function notif() {
                             push_content_notif(tab_notif, notif, users, sender);
                         });
                     }
-                    // var notif_box = document.getElementById('notif_box');
-                    // Array.from(notif_box.childNodes).forEach(function(notif_box_child) {
-                        
-                    // });
                 }
                 else
                     document.getElementById('notif_box_border').remove();
@@ -1421,12 +1341,10 @@ function change_arrow() {
     var arrow_right = document.getElementById('arrow_right');
     var i = 0;
     var len_stickers = parseInt(document.getElementById('stickers_box').dataset.id) + 2;
-    console.log(len_stickers);
     change_arrow_click(arrow_left, 'left');
     change_arrow_click(arrow_right, 'right');
 
     function change_arrow_click(arrow_img, direction) {
-        console.log(i);
         if (i * -1 == len_stickers - 3)
             arrow_right.style.opacity = 0.35;
         arrow_img.addEventListener('mousedown', function(e) {
@@ -1436,7 +1354,6 @@ function change_arrow() {
                 i++;
             else if (direction == 'right' && i * -1 < len_stickers - 3)
                 i--;
-            console.log(i);
             var stickers = document.getElementById('stickers');
             stickers.style.transform = 'translateX(calc(14vh * ' + (i) + ')';
             
@@ -1523,7 +1440,6 @@ function direction_top_click() {
     var img_sticker = sticker.childNodes[0];
 
     if (frame_sticker.dataset.dy > -230) {
-        console.log(frame_sticker.dataset.dy);
         frame_sticker.dataset.dy = parseInt(frame_sticker.dataset.dy) - 2;
         frame_sticker.getContext('2d').clearRect(0, 0, frame_sticker.width, frame_sticker.height);
         frame_sticker.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
@@ -1544,7 +1460,6 @@ function direction_right_click() {
     var img_sticker = sticker.childNodes[0];
 
     if (frame_sticker.dataset.dx < 450) {
-        console.log(frame_sticker.dataset.dx);
         frame_sticker.dataset.dx = parseInt(frame_sticker.dataset.dx) + 2;
         frame_sticker.getContext('2d').clearRect(0, 0, frame_sticker.width, frame_sticker.height);
         frame_sticker.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
@@ -1565,7 +1480,6 @@ function direction_bottom_click() {
     var img_sticker = sticker.childNodes[0];
 
     if (frame_sticker.dataset.dy < 450) {
-        console.log(frame_sticker.dataset.dy);
         frame_sticker.dataset.dy = parseInt(frame_sticker.dataset.dy) + 2;
         frame_sticker.getContext('2d').clearRect(0, 0, frame_sticker.width, frame_sticker.height);
         frame_sticker.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
@@ -1586,7 +1500,6 @@ function direction_left_click() {
     var img_sticker = sticker.childNodes[0];
 
     if (frame_sticker.dataset.dx > -280) {
-        console.log(frame_sticker.dataset.dx);
         frame_sticker.dataset.dx = parseInt(frame_sticker.dataset.dx) - 2;
         frame_sticker.getContext('2d').clearRect(0, 0, frame_sticker.width, frame_sticker.height);
         frame_sticker.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
@@ -1655,8 +1568,6 @@ function put_sticker(sticker) {
 
         var anchor_sticker = document.createElement('div');
             var frame_sticker = document.createElement('canvas');
-                // const sticker_select = document.createElement('div');
-                //     const img_sticker_select = document.createElement('img');
         const caroussel = document.getElementById('caroussel');
 
     anchor_sticker.setAttribute('id', 'anchor_sticker');
@@ -1705,21 +1616,14 @@ function submit_form_to_merge_img() {
             var img_sticker = sticker.childNodes[0];
             
             var final_canvas = document.createElement('canvas');
-            console.log(upload_img_video_screen.width);
-            console.log(upload_img_video_screen.height);
             final_canvas.width = 600;
             final_canvas.height = (upload_img_video_screen.height * 600) / upload_img_video_screen.width;
             final_canvas.getContext('2d').drawImage(upload_img_video_screen, 0, 0, 600, (upload_img_video_screen.height * 600) / upload_img_video_screen.width);
-            // var ratio = upload_img_video_screen.width / frame_sticker.width;
-            // frame_sticker.dataset.dx *= ratio;
-            // frame_sticker.dataset.dy *= ratio;
-            // frame_sticker.dataset.dwh *= ratio;
 
             final_canvas.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx * 600 / upload_img_video_screen.width, frame_sticker.dataset.dy * 600 / upload_img_video_screen.width, frame_sticker.dataset.dwh * 600 / upload_img_video_screen.width, frame_sticker.dataset.dwh * 600 / upload_img_video_screen.width);
             var final_screen = document.createElement('img');
             final_screen.setAttribute('id', 'upload_img_video_screen');
             final_screen.src = final_canvas.toDataURL('image/png');
-            console.log(final_screen);
             upload_img_video_screen.remove();
             anchor_sticker.remove();
             video_screen.appendChild(final_screen);
@@ -1755,7 +1659,6 @@ function submit_form_to_merge_img() {
         var final_screen = document.createElement('img');
         final_screen.setAttribute('id', 'video_screen');
         final_screen.src = final_canvas.toDataURL('image/png');
-        console.log(final_screen);
         video_screen.remove();
         anchor_sticker.remove();
         const buttons_picture = document.getElementById('buttons_picture');
@@ -1781,7 +1684,7 @@ function submit_form_to_merge_img() {
     submit_validate_picture.setAttribute('class', 'input-file');
     form_validate_picture.appendChild(submit_validate_picture);
     
-    // submit_validate_picture.click();
+    submit_validate_picture.click();
 }
 
 function add_validate() {
@@ -1835,9 +1738,7 @@ function take_picture_click(block, video, buttons_picture) {
     canvas.height = video.videoHeight;
     canvas.getContext('2d').drawImage(video, 0, 0);
     canvas.setAttribute('id', 'video_screen');
-    // var video_screen = document.createElement('img');
-    // video_screen.setAttribute('id', 'video_screen');
-    // video_screen.src = canvas.toDataURL('image/png');
+
     video.remove();
     block.insertBefore(canvas, buttons_picture);
     change_button_take_and_delete();
@@ -1892,14 +1793,6 @@ function upload_picture_click(e, block, buttons_picture) {
                     upload_img_new_video_screen.src = new_elem.target.result;
                     new_video_screen.appendChild(upload_img_new_video_screen);
                 block.insertBefore(new_video_screen, video_screen);
-                    // var upload_canvas_new_video_screen = document.createElement('canvas');
-                    // upload_canvas_new_video_screen.setAttribute('id', 'upload_img_video_screen');
-                    // upload_canvas_new_video_screen.width = upload_img_new_video_screen.width;
-                    // upload_canvas_new_video_screen.height = upload_img_new_video_screen.height;
-                    // console.log(upload_img_new_video_screen.width);
-                    // upload_canvas_new_video_screen.getContext('2d').drawImage(upload_img_new_video_screen, 0, 0, upload_img_new_video_screen.width, upload_img_new_video_screen.height);
-                    // new_video_screen.appendChild(upload_canvas_new_video_screen);
-                // upload_img_new_video_screen.remove();
                 video_screen.remove();
             }
         }
@@ -1932,8 +1825,6 @@ function upload_picture_no_picture(e) {
                 }
             }
             else {
-                // change_button_take_and_delete();
-    
                 reader.onload = function(new_elem) {
                     var repeat_elem = document.getElementById('video_screen');
                     if (!repeat_elem) {
@@ -1945,14 +1836,6 @@ function upload_picture_no_picture(e) {
                             upload_img_new_video_screen.src = new_elem.target.result;
                             new_video_screen.appendChild(upload_img_new_video_screen);
                         block.insertBefore(new_video_screen, video_screen);
-                            // var upload_canvas_new_video_screen = document.createElement('canvas');
-                            // upload_canvas_new_video_screen.setAttribute('id', 'upload_img_video_screen');
-                            // upload_canvas_new_video_screen.width = upload_img_new_video_screen.width;
-                            // upload_canvas_new_video_screen.height = upload_img_new_video_screen.height;
-                            // console.log(upload_img_new_video_screen.width);
-                            // upload_canvas_new_video_screen.getContext('2d').drawImage(upload_img_new_video_screen, 0, 0, upload_img_new_video_screen.width, upload_img_new_video_screen.height);
-                            // new_video_screen.appendChild(upload_canvas_new_video_screen);
-                        // upload_img_new_video_screen.remove();
                         video_screen.remove();
                         var caroussel = document.getElementById('caroussel');
                         var buttons_picture = create_buttons_picture();
@@ -1979,34 +1862,6 @@ function upload_picture_no_picture(e) {
                         label_upload_picture.addEventListener('click', function(e) {
                             e.stopPropagation();
                         });
-
-                        // var label_upload_picture = document.getElementById('label_upload_picture');
-                        
-                        // // upload_picture.addEventListener('click', function(e) {
-                        // //     var i = 1;
-                        // //     if (i == 1) {
-                        // //         label_upload_picture.click();
-                        // //         i = 0;
-                        // //     }
-                        //     var upload_img_video_screen = document.getElementById('upload_img_video_screen');
-                        //     label_upload_picture.addEventListener('change', function(elem) {
-                        //         console.log(elem);
-                        //         upload_img_video_screen.src = elem.target.file[0];
-                        //     });
-                        // });
-
-                        //     label_upload_picture.click();
-                        // });
-                        // upload_picture.addEventListener('change', change_upload_picture_no_webcam);
-
-                        // function change_upload_picture_no_webcam(e) {
-                        //     document.getElementById('buttons_picture').remove();
-                        //     buttons_picture = create_buttons_picture();
-                        //     block.insertBefore(buttons_picture, caroussel);
-                        //     upload_picture_click(e, block, buttons_picture);
-                        //     document.getElementById('delete_picture').remove();
-                        //     document.getElementById('take_picture').remove();
-                        // }
                     }
                 }
                 if (video_screen)
@@ -2037,7 +1892,6 @@ function create_video() {
 
 function create_buttons_top() {
     const buttons_picture = document.getElementById('buttons_picture');
-console.log(buttons_picture);
     const buttons_top = document.createElement('div');
         const directions_picture = document.createElement('div');
             const direction_top_picture = document.createElement('img');
@@ -2147,8 +2001,6 @@ function change_state_of_take_and_delete_picture() {
 
 
 function successCallback(stream) {
-    console.log("test");
-    
     const block = document.getElementById('block');
     const img = document.querySelector('#no_picture');
     var video_screen = document.getElementById('video_screen');
