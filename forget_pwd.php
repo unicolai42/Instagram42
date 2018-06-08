@@ -9,11 +9,7 @@
     $sth->bindParam(':username', $_SESSION['username']);
     $sth->execute();
     $user = $sth->fetch();
-
-    // $sql = "SELECT * FROM users WHERE username = '".$_SESSION['username']."'";
-    // $req = $pdo->query($sql);
-    // $user = $req->fetch();
-    // $req->closeCursor();
+    
 
     $username = $user[1];
     $pwd = $user[2];

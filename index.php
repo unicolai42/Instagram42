@@ -23,30 +23,12 @@
             include_once 'config/database.php';
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-            // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-            // if (mysqli_connect_errno()) {
-            //     printf("Échec de la connexion : %s\n", mysqli_connect_error());
-            //     exit();
-            // }
 
             $sql = "SELECT * FROM posts ORDER BY date DESC;";
             $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
             $sth->execute();
             $posts = $sth->fetchAll();
 
-            // $sql = "SELECT * FROM posts ORDER BY date DESC;";
-            // $req = $pdo->query($sql);
-            // $posts = $req->fetchAll();
-            // $req->closeCursor();
-
-            // $query = "SELECT * FROM posts ORDER BY date DESC;";
-            // $result = mysqli_query($connexion, $query);
-            // if ($result === FALSE)
-            // {
-            //     echo "shit ".mysqli_error();
-            //     exit();
-            // }
-            // $posts = mysqli_fetch_all($result);
 
             foreach ($posts as $key => $value)
             {
@@ -57,15 +39,6 @@
                 $sth->bindParam(':id', $value[1]);
                 $sth->execute();
                 $user = $sth->fetch();
-
-                // $sql = "SELECT * FROM users WHERE id = $value[1];";
-                // $req = $pdo->query($sql);
-                // $user = $req->fetch();
-                // $req->closeCursor();
-
-                // $query = "SELECT * FROM users WHERE id = $value[1];";
-                // $user = mysqli_query($connexion, $query);
-                // $user = mysqli_fetch_row($user);
 
                 if (!$user[4])
                     $profil = file_get_contents("img/users/default");
@@ -88,14 +61,6 @@
                     $sth->execute();
                     $likes = $sth->fetch();
 
-                    // $sql = "SELECT COUNT(*) FROM likes WHERE post_id = $value[0];";
-                    // $req = $pdo->query($sql);
-                    // $likes = $req->fetch();
-                    // $req->closeCursor();
-
-                    // $query = "SELECT COUNT(*) FROM likes WHERE post_id = $value[0];";
-                    // $result = mysqli_query($connexion, $query);
-                    // $likes = mysqli_fetch_row($result);
 
                     $sql = "SELECT COUNT(*) FROM comments WHERE post_id = :post_id;";
                     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
@@ -103,14 +68,6 @@
                     $sth->execute();
                     $comments = $sth->fetch();
 
-                    // $sql = "SELECT COUNT(*) FROM comments WHERE post_id = $value[0];";
-                    // $req = $pdo->query($sql);
-                    // $comments = $req->fetch();
-                    // $req->closeCursor();
-
-                    // $query = "SELECT COUNT(*) FROM comments WHERE post_id = $value[0];";
-                    // $result = mysqli_query($connexion, $query);
-                    // $comments = mysqli_fetch_row($result);
 
                         echo '<div class="like_comment">';
                             echo '<div class="chiffre">';
@@ -140,14 +97,6 @@
                             $sth->execute();
                             $liked = $sth->fetch();
 
-                            // $sql = "SELECT * FROM likes WHERE post_id = ".$value[0]." && user_id = ".$user_id.";";
-                            // $req = $pdo->query($sql);
-                            // $liked = $req->fetch();
-                            // $req->closeCursor();
-
-                            // $query = "SELECT * FROM likes WHERE post_id = ".$value[0]." && user_id = ".$user_id.";";
-                            // $result = mysqli_query($connexion, $query);
-                            // $liked = mysqli_fetch_row($result);
 
                             if (!$liked[0])
                                 echo '<div onclick="like_or_dislike_post(this)" class="like_icon"><img class="like" src="ressources/like.png" alt="like"></div>';
@@ -161,14 +110,6 @@
                             $sth->execute();
                             $commented = $sth->fetch();
 
-                            // $sql = "SELECT * FROM comments WHERE post_id = ".$value[0]." && user_id = ".$user_id.";";
-                            // $req = $pdo->query($sql);
-                            // $commented = $req->fetch();
-                            // $req->closeCursor();
-
-                            // $query = "SELECT * FROM comments WHERE post_id = ".$value[0]." && user_id = ".$user_id.";";
-                            // $result = mysqli_query($connexion, $query);
-                            // $commented = mysqli_fetch_row($result);
 
                             if (!$commented[0])
                                 echo '<div class="comm_icon"><img class="comm_img" src="ressources/comm.png" alt="comment"></div>';
@@ -190,19 +131,6 @@
                             $sth->execute();
                             $users = $sth->fetchAll();
 
-                            // $sql = "SELECT * FROM users;";
-                            // $req = $pdo->query($sql);
-                            // $users = $req->fetchAll();
-                            // $req->closeCursor();
-                            
-                            // $query = "SELECT * FROM users;";
-                            // $result = mysqli_query($connexion, $query);
-                            // if (!$result)
-                            // {
-                            //     echo "shit id";
-                            //     exit();
-                            // }
-                            // $users = mysqli_fetch_all($result);
 
                             echo '<div class="followers">';
                                 echo "<span class='with'>with </span>";
@@ -233,19 +161,6 @@
                         $sth->execute();
                         $comments = $sth->fetchAll();
 
-                        // $sql = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.id WHERE post_id = ".$value[0]." ORDER BY date DESC;";
-                        // $req = $pdo->query($sql);
-                        // $comments = $req->fetchAll();
-                        // $req->closeCursor();
-
-                        // $query = "SELECT * FROM comments INNER JOIN users ON comments.user_id = users.id WHERE post_id = ".$value[0]." ORDER BY date DESC;";
-                        // $result = mysqli_query($connexion, $query);
-                        // if ($result === FALSE)
-                        // {
-                        //     echo "shit ".mysqli_error();
-                        //     exit();
-                        // }
-                        // $comments = mysqli_fetch_all($result);
 
                         $sql = "SELECT * FROM likes INNER JOIN users ON likes.user_id = users.id WHERE post_id = :post_id ORDER BY date DESC;";
                         $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
@@ -253,10 +168,6 @@
                         $sth->execute();
                         $like_users = $sth->fetchAll();
 
-                        // $sql = "SELECT * FROM likes INNER JOIN users ON likes.user_id = users.id WHERE post_id = ".$value[0]." ORDER BY date DESC;";
-                        // $req = $pdo->query($sql);
-                        // $like_users = $req->fetchAll();
-                        // $req->closeCursor();
                         
                         echo
                         "<div id='liked_by'>";

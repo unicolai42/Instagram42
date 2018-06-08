@@ -21,11 +21,6 @@
                     include_once 'config/database.php';
                     $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-                    // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-                    // if (mysqli_connect_errno()) {
-                    //     echo "Database connexion fail";
-                    //     exit();
-                    // }
 
                     $sql = "SELECT notif_read FROM users WHERE id = :id;";
                     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
@@ -33,19 +28,6 @@
                     $sth->execute();
                     $notif_id = $sth->fetch();
 
-                    // $sql = "SELECT notif_read FROM users WHERE id = ".$_COOKIE['user_id'].";";
-                    // $req = $pdo->query($sql);
-                    // $notif_id = $req->fetch();
-                    // $req->closeCursor();
-                
-                    // $query = "SELECT notif_read FROM users WHERE id = ".$_COOKIE['user_id'].";";
-                    // $result = mysqli_query($connexion, $query);
-                    // if (!$result)
-                    // {
-                    //     echo "shit connexion";
-                    //     exit();
-                    // }
-                    // $notif_id = mysqli_fetch_row($result);
 
                     if ($notif_id[0] == 0)
                         echo '<div id="like_notif"><img src="ressources/like.png" alt=""></div>';

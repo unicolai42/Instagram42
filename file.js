@@ -575,7 +575,6 @@ function display_new_comment(e, dataset_id) {
 }
 
 function new_comment(e) {
-    console.log(e);
     var key = e.which || e.keyCode;
     if (key === 13) {
         // console.log(location.pathname);
@@ -1747,9 +1746,9 @@ function submit_form_to_merge_img() {
             var img_sticker = sticker.childNodes[0];
 
             var ratio = video_screen.width / frame_sticker.width;
-            frame_sticker.dataset.dx *= ratio;
-            frame_sticker.dataset.dy *= ratio;
-            frame_sticker.dataset.dwh *= ratio;
+            frame_sticker.dataset.dx *= ratio / 1.0075;
+            frame_sticker.dataset.dy *= ratio * 1.005;
+            frame_sticker.dataset.dwh *= ratio * 1.005;
 
             final_canvas.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
         }
@@ -1782,7 +1781,7 @@ function submit_form_to_merge_img() {
     submit_validate_picture.setAttribute('class', 'input-file');
     form_validate_picture.appendChild(submit_validate_picture);
     
-    submit_validate_picture.click();
+    // submit_validate_picture.click();
 }
 
 function add_validate() {

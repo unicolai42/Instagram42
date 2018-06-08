@@ -30,12 +30,7 @@
             <div id="board">';
             include_once 'config/database.php';
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
-        
-                // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-                // if (mysqli_connect_errno()) {
-                //     printf("Échec de la connexion : %s\n", mysqli_connect_error());
-                //     exit();
-                // }
+
 
                 $sql = "SELECT * FROM users WHERE id = :user_id;";
                 $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -43,14 +38,6 @@
                 $sth->execute();
                 $user = $sth->fetch();
 
-                // $query = "SELECT * FROM users WHERE id = '".$_GET['user_id']."';";
-                // $result = mysqli_query($connexion, $query);
-                // if (!$result)
-                // {
-                //     echo "shit query 1";
-                //     exit();
-                // }
-                // $user = mysqli_fetch_row($result);
 
                 if (!$user[4])
                     $profil = file_get_contents("img/users/default");
@@ -88,14 +75,6 @@
                         $sth->execute();
                         $follow = $sth->fetch();
 
-                        // $query = "SELECT * FROM follow WHERE follower_id = ".$user_id." && following_id = ".$_GET['user_id'].";";
-                        // $result = mysqli_query($connexion, $query);
-                        // if (!$result)
-                        // {
-                        //     echo "shit query 2";
-                        //     exit();
-                        // }
-                        // $follow = mysqli_fetch_row($result);
 
                         if ($user_id == $_GET['user_id'])
                             echo "<a href='modif.php' id='follow_or_edit'>edit profil</a>";
@@ -113,29 +92,12 @@
                         $sth->execute();
                         $posts = $sth->fetch();
 
-                        // $query = "SELECT COUNT(*) FROM posts WHERE user_id = '".$_GET['user_id']."';";
-                        // $result = mysqli_query($connexion, $query);
-                        // if (!$result)
-                        // {
-                        //     echo "shit query 3";
-                        //     exit();
-                        // }
-                        // $posts = mysqli_fetch_row($result);
 
                         $sql = "SELECT COUNT(*) FROM follow WHERE following_id = :following_id;";
                         $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
                         $sth->bindParam(':following_id', $_GET['user_id']);
                         $sth->execute();
                         $follower = $sth->fetch();
-                        
-                        // $query = "SELECT COUNT(*) FROM follow WHERE following_id = '".$_GET['user_id']."';";
-                        // $result = mysqli_query($connexion, $query);
-                        // if (!$result)
-                        // {
-                        //     echo "shit query 4";
-                        //     exit();
-                        // }
-                        // $follower = mysqli_fetch_row($result);
 
                         $sql = "SELECT COUNT(*) FROM follow WHERE follower_id = :follower_id;";
                         $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
@@ -143,14 +105,6 @@
                         $sth->execute();
                         $following = $sth->fetch();
                         
-                        // $query = "SELECT COUNT(*) FROM follow WHERE follower_id = '".$_GET['user_id']."';";
-                        // $result = mysqli_query($connexion, $query);
-                        // if (!$result)
-                        // {
-                        //     echo "shit query 5";
-                        //     exit();
-                        // }
-                        // $following = mysqli_fetch_row($result);
 
                     echo "    
                     </div>
@@ -168,14 +122,6 @@
                 $sth->execute();
                 $posts = $sth->fetchAll();
 
-                // $query = "SELECT * FROM posts WHERE user_id = '".$_GET['user_id']."' ORDER BY date DESC;";
-                // $result = mysqli_query($connexion, $query);
-                // if ($result === FALSE)
-                // {
-                //     echo "shit query 6";
-                //     exit();
-                // }
-                // $posts = mysqli_fetch_all($result);
 
                 $i = 0;
                 $y = 1;
@@ -209,14 +155,7 @@
                 echo '
             </div>
         </div>';
-        // $query = "SELECT * FROM comments WHERE post_id = 34 ORDER BY date DESC;";
-        // $result = mysqli_query($connexion, $query);
-        // if ($result === FALSE)
-        // {
-        //     echo "shit query 7";
-        //     exit();
-        // }
-        // $comments = mysqli_fetch_all($result);
+
         if ($len > 0) {
             echo'
             <div id="black_opacity" class="hide_black_opacity">

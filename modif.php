@@ -27,32 +27,12 @@
             include_once 'config/database.php';
             $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false));
 
-            // $connexion = mysqli_connect("127.0.0.1", "root", "00000000", "Camagru");
-            // if (mysqli_connect_errno())
-            // {
-            //     echo "shit connexion";
-            //     exit();
-            // }
 
             $sql = "SELECT * FROM users WHERE id = :user_id;";
             $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
             $sth->bindParam(':user_id', $_COOKIE['user_id']);
             $sth->execute();
             $user = $sth->fetch();
-
-            // $sql = "SELECT * FROM users WHERE id = ".$_COOKIE['user_id'].";";
-            // $req = $pdo->query($sql);
-            // $array = $req->fetch();
-            // $req->closeCursor();
-
-            // $query = "SELECT * FROM users WHERE id = ".$_COOKIE['user_id'].";";
-            // $result = mysqli_query($connexion, $query);
-            // if (!$result)
-            // {
-            //     echo "error query";
-            //     exit();
-            // }
-            // $array = mysqli_fetch_row($result);
 
             $_SESSION['user_id'] = $user[0];
             $_SESSION['username'] = $user[1];
