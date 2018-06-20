@@ -9,7 +9,7 @@
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->bindParam(':user_id', $user_id);
     $sth->execute();
-    $posts = $sth->fetchAll()
+    $posts = $sth->fetchAll();
 
     $posts_id = array();
 
