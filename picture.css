@@ -50,6 +50,7 @@
         }
     #buttons_picture {
         height: 0;
+        margin-top: 0;
     }
         #buttons_top {
             position: relative;
