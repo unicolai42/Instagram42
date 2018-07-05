@@ -1,6 +1,6 @@
 <?PHP
     session_start();
-    if (empty($_COOKIE['username']))
+    if (empty($_COOKIE['username']) || empty($_COOKIE['user_id']))
     {
         $username = '';
         $user_id = -1;
