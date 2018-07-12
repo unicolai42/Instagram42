@@ -1650,17 +1650,17 @@ function submit_form_to_merge_img() {
             var img_sticker = sticker.childNodes[0];
 
             var ratio = video_screen.width / frame_sticker.width;
-            frame_sticker.dataset.dx *= ratio / 1.0075;
-            frame_sticker.dataset.dy *= ratio * 1.005;
-            frame_sticker.dataset.dwh *= ratio * 1.005;
+            frame_sticker.dataset.dx *= ratio;
+            frame_sticker.dataset.dy *= ratio;
+            frame_sticker.dataset.dwh *= ratio;
 
             final_canvas.getContext('2d').drawImage(img_sticker, frame_sticker.dataset.dx, frame_sticker.dataset.dy, frame_sticker.dataset.dwh, frame_sticker.dataset.dwh);
         }
         var final_screen = document.createElement('img');
         final_screen.setAttribute('id', 'video_screen');
         final_screen.src = final_canvas.toDataURL('image/png');
+        console.log(final_screen);
         video_screen.remove();
-        anchor_sticker.remove();
         const buttons_picture = document.getElementById('buttons_picture');
         block.insertBefore(final_screen, buttons_picture);
         var img_screen = final_screen;
