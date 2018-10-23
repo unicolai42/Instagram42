@@ -95,11 +95,11 @@
 
 
     $destinataire = $mail;
-    $sujet = "Activer votre compte Instagram42" ;
+    $sujet = "Activer votre compte Instagram" ;
     
 
     $message = '
-    Welcome to Instagram42 '.$username.',
+    Welcome to Instagram '.$username.',
     
     To activate your account, please click on the link below
     or copy/past it into your browser.

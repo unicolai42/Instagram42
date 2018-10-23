@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Instagram42</title>
+        <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
         <link rel="stylesheet" href="modif.css">
         <link rel="stylesheet" href="header.css">
