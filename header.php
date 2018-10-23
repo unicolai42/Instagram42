@@ -4,7 +4,7 @@
             <a id="logo" href="index.php">
                 <img src="ressources/logo.png" alt="">
                 <hr id="barre">
-                <div id="texte">Instagram</div>
+                <div id="texte">Instagram42</div>
             </a>
             <div id="search_box">
                 <form id="search" action="search.php" method="POST">

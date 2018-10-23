@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Instagram</title>
+        <title>Instagram42</title>
         <link rel="icon" href="ressources/logo.ico"/>
         <link rel="stylesheet" href="connexion.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
@@ -29,7 +29,7 @@
                 <div id="box">
                     <div id="logo">
                         <img src="ressources/logo.png" alt="">
-                        <div id="text_logo">Instagram</div>
+                        <div id="text_logo">Instagram42</div>
                     </div>
                     <form action="check_connexion.php" method="post">
                         <input class="input" id="username" type="text" <?PHP if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong pwd' && !empty($_SESSION['username'])) echo 'value="'.ucfirst($_SESSION['username']).'"'; else echo 'placeholder="'; if (!empty($_SESSION['error']) && $_SESSION['error'] == 'wrong username') echo 'Incorrect username'; else if (!empty($_SESSION['error']) && $_SESSION['error'] == 'unactivate') echo 'You have to activate your account'; else echo 'Username'; echo '" name="username">';?>

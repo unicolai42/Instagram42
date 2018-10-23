@@ -15,7 +15,7 @@
     $pwd = $user[2];
     $cle = $user[6];
     $destinataire = $user[3];
-    $sujet = 'Reset your Instagram password';
+    $sujet = 'Reset your Instagram42 password';
 
     $message = '
     Hello '.$username.',

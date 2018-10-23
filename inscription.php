@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Instagram</title>
+        <title>Instagram42</title>
         <link rel="icon" href="ressources/logo.ico"/>
         <link rel="stylesheet" href="inscription.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
@@ -24,7 +24,7 @@
                 <div id="box">
                     <div id="logo">
                         <img src="ressources/logo.png" alt="">
-                        <div id="text_logo">Instagram</div>
+                        <div id="text_logo">Instagram42</div>
                     </div>
                     <form action="check_inscription.php" method="post">
                         <input class="input" id="mail" type="text" placeholder="<?PHP

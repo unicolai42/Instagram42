@@ -14,10 +14,10 @@
     $username = $user[1];
     $cle = $user[6];
     $destinataire = $user[3];
-    $sujet = "Activate your Instagram account" ;
+    $sujet = "Activate your Instagram42 account" ;
 
     $message = '
-    Welcome to Instagram '.$username.',
+    Welcome to Instagram42 '.$username.',
     
     To activate your account, please click on the link below
     or copy/past it into your browser.

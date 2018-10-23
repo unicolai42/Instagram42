@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Instagram</title>
+        <title>Instagram42</title>
         <link rel="icon" href="ressources/logo.ico"/>
         <link rel="stylesheet" href="upload.css">
         <link rel="stylesheet" href="header.css">
