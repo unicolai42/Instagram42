@@ -20,4 +20,4 @@ Go in the browser and open the http://localhost:8080/ page.
 
 This is what is look like :
 
-<a src="https://giphy.com/gifs/3fdDSYp26ucsyD4d8U/html5"/>
+<a href="https://giphy.com/gifs/3fdDSYp26ucsyD4d8U/html5"/>
