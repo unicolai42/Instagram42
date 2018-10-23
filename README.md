@@ -20,4 +20,4 @@ Go in the browser and open the http://localhost:8080/ page.
 
 This is what is look like :
 
-<iframe src="https://giphy.com/embed/3fdDSYp26ucsyD4d8U" width="480" height="291" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/3fdDSYp26ucsyD4d8U">via GIPHY</a></p>
+![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
