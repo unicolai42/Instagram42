@@ -19,3 +19,5 @@ Go in the browser and open the http://localhost:8080/ page.
 
 
 This is what is look like :
+
+<a src="https://gph.is/2NZmsq8"/>
