@@ -32,7 +32,7 @@ The database has to be in sql language
 <br/>
 <p align='center'><img src="https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif" alt='instagram42'/></p>
 <p align='center'><i>Change profile picture + take picture, add filter and post it</i></p>
-
+<br/>
 
 ### Installation
 
