@@ -23,6 +23,7 @@ The database has to be in sql language
 git clone https://github.com/unicolai42/Instagram42.git Instagram42
 ```
 
+1. test
 ⋅⋅⋅Install mysql and open it :
 ```
 brew install mysql
