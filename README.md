@@ -23,7 +23,6 @@ Install the project on your computer (open your terminal then paste this) :
 git clone https://github.com/unicolai42/Instagram42.git Instagram42
 ```
 
-
 Install mysql and open it :
 ```
 brew install mysql
@@ -31,14 +30,12 @@ brew install mysql
 mysql -u [your username] -p
 ```
 
-
 Create a database and close mysql:
 ```
 CREATE DATABASE Instagram42;
 
 quit;
 ```
-
 
 Download the database and launch the server:
 ```
@@ -50,7 +47,6 @@ cd config
 
 php -S localhost:8080 (if php isn't install tape this before -> brew install php)
 ```
-
 
 Open the project in your Navigator :
 ```
