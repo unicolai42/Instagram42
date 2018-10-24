@@ -22,4 +22,4 @@ This is what is look like :
 
 ![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
 
-![instagram42-home](http://g.recordit.co/exWiutoe2D.gif)
+![instagram42-home](https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif)
