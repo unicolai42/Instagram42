@@ -20,7 +20,8 @@ The database has to be in sql language
 
 ```Home```
 <p align='center'><img src="https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif" alt='instagram42-home'/></p>
-<i align='center'>Home + profil accessible when you're not connected</i>
+<i align='center' font-size='12px'>Home + profil accessible when you're not connected</i>
+
 ```Like```
 ![instagram42-home](https://media.giphy.com/media/1AjVkD6Akvqa44GQqY/giphy.gif)
 
