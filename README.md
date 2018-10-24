@@ -2,22 +2,19 @@
 
 ### Purpose
 
-
-```
 Create an Instagram like from scratch without any modules or framework.
 
 Add the possibility to take a picture from the camera and add filter on it
-```
+
 
 ### Restriction
 
-```
 The backend should be in PHP
 
 The frontend in HTML CSS and vanilla JS (plain JavaScript without any additional libraries like jQuery).
 
 The database has to be in sql language
-```
+
 
 ### Installation
 
