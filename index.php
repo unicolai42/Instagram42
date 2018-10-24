@@ -8,12 +8,12 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="index.css">
-        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/header.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400,500" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
-        <script type="text/javascript" src="file.js"></script>
+        <script type="text/javascript" src="backend/file.js"></script>
     </head>
     <body>
         <?PHP include ("header.php"); ?>
@@ -194,7 +194,7 @@
                             }
                         echo "</div>";
                         echo '
-                        <form class="form_comment" action="'; if (!empty($_COOKIE['user_id'])) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
+                        <form class="form_comment" action="'; if (!empty($_COOKIE['user_id'])) echo '/backend/check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
                             <input class="comment_answer" type="text" name="comment" placeholder="Add a comment...">
                             <input type="hidden" name="post_id" value="'.$value[0].'">
                             <input type="submit" class="submit_button">

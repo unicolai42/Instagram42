@@ -17,8 +17,8 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="header.css">
-        <link rel="stylesheet" href="profil.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/profil.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
@@ -190,7 +190,7 @@
                                     <div class="number_comments"></div>
                                 </div>    
                             </div>
-                            <form class="form_comment" action="'; if ($_COOKIE['user_id']) echo 'check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
+                            <form class="form_comment" action="'; if ($_COOKIE['user_id']) echo 'backend/check_comment.php'; else echo 'connexion.php'; echo '" method="POST">
                                 <input class="comment_answer" type="text" name="comment" placeholder="Add a comment...">
                                 <input class="post_id_form" type="hidden" name="post_id" value="">
                                 <input type="submit" class="submit_button">
@@ -202,5 +202,5 @@
         }
         ?>
     </body>
-    <script type="text/javascript" src="file.js"></script>
+    <script type="text/javascript" src="backend/file.js"></script>
 </html>

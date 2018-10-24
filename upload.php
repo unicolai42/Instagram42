@@ -12,19 +12,19 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="upload.css">
-        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="css/upload.css">
+        <link rel="stylesheet" href="css/header.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
-        <script type="text/javascript" src="file.js"></script>
+        <script type="text/javascript" src="backend/file.js"></script>
     </head>
     <body>
         <?PHP include('header.php');?>
         <div id='wrapper_content'>
             <div id='block'>
                 <img id='block_img' src='<?=$_POST['img_screen']?>' alt=''>
-                <form action="check_upload.php" method="post" id='publish'>       
+                <form action="backend/check_upload.php" method="post" id='publish'>       
                     <input type="text" class="case" placeholder='Description...' name="title">
                     <hr id="ligne">
                     <input type="text" id="search_tag" class='case' placeholder="Tag your friends..." name="friend"><br>

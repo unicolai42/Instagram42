@@ -13,12 +13,12 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="modif.css">
-        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="css/modif.css">
+        <link rel="stylesheet" href="css/header.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
-        <script type="text/javascript" src="file.js"></script>
+        <script type="text/javascript" src="backend/file.js"></script>
     </head>
     <body>
         <?PHP
@@ -42,7 +42,7 @@
         <div id="wrapper_content">
             <div id="block">
                 <div id="title">Editing your information</div>
-                <form action="check_modif.php" method="POST">
+                <form action="backend/check_modif.php" method="POST">
                     <label for="username"><span id="modifusername" class="label_text">Username</span><input name="username" type="text" id="username" value="<?PHP echo $_SESSION['username'] ?>"></label>
                     <label for="oldmdp"><span id="modifoldmdp" class="label_text">Old password</span><input name="oldmdp" type="password" id="oldmdp" <?PHP if (!empty($_SESSION['wrong_oldmdp'])) echo "placeholder='Incorrect password' "; else if (!empty($_SESSION['change_pwd'])) echo "placeholder='Leave this field empty'"; ?>></label>
                     <label for="newmdp1"><span id="modifnewmdp" class="label_text">New password</span><input name="newmdp1" type="password" id="newmdp1" <?PHP if (!empty($_SESSION['wrong_newmdp'])) echo "placeholder='Password not identical' "; else if (!empty($_SESSION['wrong_len_newmdp'])) echo "placeholder='Reinforce the password'"; else if (!empty($_SESSION['change_pwd'])) echo "placeholder='Insert your new password'"; ?>></label>

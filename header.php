@@ -7,7 +7,7 @@
                 <div id="texte">Instagram</div>
             </a>
             <div id="search_box">
-                <form id="search" action="search.php" method="POST">
+                <form id="search" action="backend/search.php" method="POST">
                     <input id="search_bar" type="search" placeholder="Search..." name="username">
                 </form>
             </div>
@@ -36,7 +36,7 @@
                 }
             ?>
                 <?PHP if (!empty($_COOKIE['username'])  && !empty($_COOKIE['user_id'])) echo '<a href="profil.php?user_id='.$_COOKIE['user_id'].'" id="user_logo"><img src="ressources/user.png" alt=""></a>'; else echo '<a href="connexion.php" id="connexion">SIGN IN</a>'; ?>
-                <?PHP if (!empty($_COOKIE['user_id'])) echo '<a href="logout.php" id="logout"><img src="ressources/logout.png" alt=""></a>' ?>
+                <?PHP if (!empty($_COOKIE['user_id'])) echo '<a href="backend/logout.php" id="logout"><img src="ressources/logout.png" alt=""></a>' ?>
             </div>
         </div>
     </div>

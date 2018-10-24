@@ -12,12 +12,12 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="picture.css">
-        <link rel="stylesheet" href="header.css">
+        <link rel="stylesheet" href="css/picture.css">
+        <link rel="stylesheet" href="css/header.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
-        <script type="text/javascript" src="file.js"></script>
+        <script type="text/javascript" src="backend/file.js"></script>
     </head>
     <body>
         <?PHP include('header.php');?>
@@ -56,7 +56,7 @@
                         $i++;
                     }
                 ?>
-                        <form enctype="multipart/form-data" action="add_sticker.php" method="POST" class='sticker' id='submit_form'>
+                        <form enctype="multipart/form-data" action="backend/add_sticker.php" method="POST" class='sticker' id='submit_form'>
                             <input type="hidden" name="MAX_FILE_SIZE" value= "60000000">
                             <label for="plus_click"><?php if (empty($_SESSION['error_img'])) echo "<img id='plus_sticker' src='ressources/plus.png' alt=''>"; else echo "<div id='text_sticker'>Download problem. Retry ?</div>"; unset($_SESSION['error_img']); ?></label>
                                 <input id="plus_click" name="img" onchange='upload()' class="input-file" type="file">

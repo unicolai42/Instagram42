@@ -13,7 +13,7 @@
         <meta charset="utf-8" />
         <title>Instagram</title>
         <link rel="icon" href="ressources/logo.ico"/>
-        <link rel="stylesheet" href="inscription.css">
+        <link rel="stylesheet" href="css/inscription.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed:200,300,400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet">
@@ -26,7 +26,7 @@
                         <img src="ressources/logo.png" alt="">
                         <div id="text_logo">Instagram</div>
                     </div>
-                    <form action="check_inscription.php" method="post">
+                    <form action="backend/check_inscription.php" method="post">
                         <input class="input" id="mail" type="text" placeholder="<?PHP
                         if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mail pris") echo "This email is already taken"; else if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mail vide") echo "Please enter a valid mail"; else if (!empty($_SESSION["error"]) && $_SESSION["error"] == "mail too long") echo "The selected mail is too long"; else echo "Email"; ?>"
                         <?PHP if (empty($_SESSION["error"]) || (!empty($_SESSION["error"]) && $_SESSION['error'] != "mail pris" && $_SESSION['error'] != "mail vide")) { echo "value='"; if (!empty($_SESSION['mail'])) echo $_SESSION['mail']; echo "'"; } ?> name="mail">
@@ -39,7 +39,7 @@
                     </form>
                 </div>
             </div>
-            <a id="signin" href="connexion.php">Already member ? <span id="connexion"</span>SIGN IN</a>
+            <a id="signin" href="connexion.php">Already member ? <span id="connexion">SIGN IN</span></a>
         </div>
     </body>
 </html>

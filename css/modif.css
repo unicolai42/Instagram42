@@ -1,0 +1,97 @@
+#wrapper_content {
+    height: 100vh;
+    display: flex;
+}
+    #block {
+        margin: auto;
+        padding: 50px;
+        background-color: white;
+        border: 1px solid #dedede;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+        #title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 22px;
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+            .case {
+                display: flex;
+            }
+                .text {
+                    margin: auto;
+                    border: 1px solid salmon;
+                }
+                label {
+                    font-family: 'Raleway', sans-serif;
+                    font-weight: 200;
+                    font-size: 16px;
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 20px;
+                }
+                    .label_text {
+                        margin: auto 0 auto auto;
+                    }
+                    input {
+                        height: 28px;
+                        width: 180px;
+                        font-family: "IBM Plex Sans Condensed";
+                        font-weight: 200;
+                        font-size: 16px;
+                        padding-left: 20px;
+                        border-radius: 6px;
+                        margin: auto 0 auto 80px;
+                    }
+                    #submit {
+                        margin: 50px auto auto auto;
+                        background-color: #2dbe60;
+                        color: white;
+                        cursor: pointer;
+                    }
+
+        #back_to_profil {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            color: black;
+            margin: 10px auto;
+            text-decoration: underline;
+        }
+
+
+        #frame_check_modif {
+            margin: auto;
+            display: flex;
+        }
+            #absolute_check_modif {
+                position: absolute;
+                display: flex;
+                width: 100%;
+                left: 0;
+            }
+                .check_modif {
+                    font-family: "IBM Plex Sans Condensed";
+                    font-weight: 300;
+                    font-size: 13px;
+                    cursor: pointer;
+                    text-align: center;
+                    margin: 1vh auto;
+                    font-style: italic;
+                }
+                #confirm_modif {
+                    color: blueviolet;
+                }
+                #error_modif {
+                    color: red;
+                }
