@@ -21,3 +21,5 @@ Go in the browser and open the http://localhost:8080/ page.
 This is what is look like :
 
 ![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
+
+![instagram42-home](http://g.recordit.co/exWiutoe2D.gif)
