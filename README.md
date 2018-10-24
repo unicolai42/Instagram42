@@ -31,7 +31,6 @@ Install mysql and open it :
 brew install mysql
 
 mysql -u [your username] -p
-
 ```
 
 Create a database and close mysql:
@@ -53,8 +52,9 @@ php -S localhost:8080 (if php isn't install tape this before -> brew install php
 ```
 
 Open the project in your Navigator :
+
 ```
-Paste this in the url --> http://localhost:8080
+http://localhost:8080 (Paste this in the url)
 ```
 
 ### Result
