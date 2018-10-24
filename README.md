@@ -20,6 +20,9 @@ Go in the browser and open the http://localhost:8080/ page.
 
 This is what is look like :
 
+![instagram42-home](https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif)
+
+![instagram42-home](https://media.giphy.com/media/1AjVkD6Akvqa44GQqY/giphy.gif)
+
 ![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
 
-![instagram42-home](https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif)
