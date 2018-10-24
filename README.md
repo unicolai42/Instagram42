@@ -21,7 +21,7 @@ The database has to be in sql language
 ### Installation
 
 ```
-Install the project on your computer (open your terminal then paste this) :
+####Install the project on your computer (open your terminal then paste this) :####
 
 git clone https://github.com/unicolai42/Instagram42.git Instagram42
 
