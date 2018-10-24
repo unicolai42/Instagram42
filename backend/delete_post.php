@@ -33,4 +33,6 @@
     $sth = $pdo->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY)); 
     $sth->bindParam(':post_id', $post_id, PDO::PARAM_INT);
     $sth->execute();
+
+    unlink("../img/posts/$post_id")
 ?>
