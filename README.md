@@ -27,7 +27,7 @@ Go in the browser and open the http://localhost:8080/ page.
 ### Result
 
 ```Home```
-![instagram42-home](https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif)
+<center>![instagram42-home](https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif)</center>
 
 ```Like```
 ![instagram42-home](https://media.giphy.com/media/1AjVkD6Akvqa44GQqY/giphy.gif)
