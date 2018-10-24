@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.21, for osx10.12 (x86_64)
 --
--- Host: localhost    Database: Camagru
+-- Host: localhost    Database: Instagram42
 -- ------------------------------------------------------
 -- Server version	5.7.21
 
