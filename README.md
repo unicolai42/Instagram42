@@ -21,6 +21,7 @@ The database has to be in sql language
 <p align='center'><img src="https://media.giphy.com/media/25R4xK8Z8m3SzWOvo8/giphy.gif" alt='instagram42'/></p>
 <p align='center'><i>Home + Profile accessible when you're not connected</i></p>
 <br/>
+<br/>
 <p align='center'><img src="https://media.giphy.com/media/1AjVkD6Akvqa44GQqY/giphy.gif" alt='instagram42'/></p>
 <p align='center'><i>Like + Comment post when you're connected</i></p>
 <br/>
@@ -29,12 +30,8 @@ The database has to be in sql language
 <p align='center'><i>Notifications + display comments and likes in the home</i></p>
 <br/>
 <br/>
-<p align='center'><img src="https://media.giphy.com/media/WvuqZ64IcDw4Wed5oQ/giphy.gif" alt='instagram42'/></p>
-<p align='center'><i>Notifications + display comments and likes in the home</i></p>
-<br/>
-```Cam```
-![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
-
+<p align='center'><img src="https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif" alt='instagram42'/></p>
+<p align='center'><i>Change profile picture + take picture, add filter and post it</i></p>
 
 
 ### Installation
