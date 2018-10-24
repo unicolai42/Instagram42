@@ -24,5 +24,7 @@ This is what is look like :
 
 ![instagram42-home](https://media.giphy.com/media/1AjVkD6Akvqa44GQqY/giphy.gif)
 
+![instagram42-home](https://media.giphy.com/media/WvuqZ64IcDw4Wed5oQ/giphy.gif)
+
 ![instagram42-cam](https://media.giphy.com/media/3fdDSYp26ucsyD4d8U/giphy.gif)
 
