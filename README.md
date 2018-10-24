@@ -21,11 +21,38 @@ The database has to be in sql language
 ### Installation
 
 ```
-Go into config folder, then execute "php setup.php" to initiate the database. (Please make sure to have mysql installed)
+Install the project on your computer (open your terminal then paste this) :
 
-Go to the root and launch "php -S localhost:8080" (Same, make sure to have php installed)
+git clone https://github.com/unicolai42/Instagram42.git Instagram42
 
-Go in the browser and open the http://localhost:8080/ page.
+
+Install mysql and open it :
+
+brew install mysql
+
+mysql -u [your username] -p
+
+
+Create a database and close mysql:
+
+CREATE DATABASE Instagram42;
+
+quit;
+
+
+Download the database and launch the server:
+
+cd config
+
+./setup.php
+
+../ (go to the root of the project)
+
+php -S localhost:8080 (if php isn't install tape this before -> brew install php)
+
+Open the project in your Navigator :
+
+Paste this in the url --> http://localhost:8080
 ```
 
 ### Result
